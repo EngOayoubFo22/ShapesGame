@@ -67,56 +67,78 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 	{
 	case ITM_SIGN:
 		op = new operAddSign(this);
-		printMessage("You Clicked on Create A Sign");
+		 {
+			printMessage("You Clicked on Create A Sign");
+		}	
+			
 		break;
-	/*case ITM_Triangle:
-		op = new operAddTriangle(this);
-		printMessage("You Clicked on Create A Triangle");
-		break;
-	case ITM_circle:
-		op = new operAddcircle(this);
-		printMessage("You Clicked on Create A Circle");
-		break;
-	case ITM_Rectangle:
-		op = new operAddRectangle(this);
-		printMessage("You Clicked on Create A Rectangle");
-		break;*/
+	
 	case ITM_Save_and_Load:
 		op = new operSave(this);
 		printMessage("You Cliked on Save And Load");
 		break;
 	case ITM_Select_GAME_LEVEl:
-		printMessage("You Clicked on Select Game level");
+	{
+		printMessage("Please enter the game level:");
+		//string newlevel =getSrting(); // Encapsulate this line in a block
+		//if (!newlevel.empty()) {
+		//	int level1 = std::stoi(newlevel); // Convert input to an integer.
+		//	setlevel(level1); // Change to the requested game level.
+		//	printMessage("Game level selected."+newlevel);
+		//}
+		//
+		//
+		 }
+		break;
+				
 			break;
 	case ITM_Decrease:
 		op = new operDecResize(this);
-		step1++;
-		printMessage("You Decreased the Size");
+		if (stepsRemaining < 0) {
+
+			printMessage("Not enough steps remaining to perform this operation!");
+		}
+		else
+			printMessage("you decreased size");
+		
 		break;
 	case ITM_Delete:
 		op = new operDelete(this);
-		step1++;
-		printMessage("You Deleted this Item");
+		if (stepsRemaining > 0) {
+			printMessage("You Deleted this Item");
+		}
+		else
+		printMessage("Not enough steps remaining to perform this operation!");
 			break;
 	case ITM_Hint:
 		printMessage("You Used A hint");
 		break;
 	case ITM_Increase:
 		op = new operIncResize(this);
-		step1++;
-		printMessage("You Increased this items size");
+		if (stepsRemaining > 0) {
+			printMessage("You Increased this items size");
+		}
+		else
+		printMessage("Not enough steps remaining to perform this operation!");
 		break;
 	case ITM_Rotate:
 	
 		op = new operRotate(this);
-		printMessage("You Rotated this Item");
+		if (stepsRemaining > 0) {
+			printMessage("You Rotated this Item");
+		}
+		else
+			printMessage("Not enough steps remaining to perform this operation!");
+		
 		break;
-	case ITM_Refresh:
-		step1++;
+	case ITM_Refresh:		
 		
 		op = new operRefresh(this);
-		
-		printMessage("You Refreshed The Random shapes");
+		if (stepsRemaining>0) {
+			printMessage("You Refreshed The Random shapes");
+		}
+		else
+		printMessage("Not enough steps remaining to perform this operation!");
 		break;
 	case ITM_Icecream:
 		printMessage("You clicked on Draw Ice Cream");
@@ -141,7 +163,11 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_FLIP:
 		op = new operFlip(this);
+		if (stepsRemaining >=0) {
 			printMessage("You clicked on Flip");
+		}
+		else
+			printMessage("Not enough steps remaining to perform this operation!");
 		break;
 	}
 	
@@ -208,6 +234,39 @@ toolbar* game::getToolBar() const
 int game::getstep1()
 {
 	return step1;
+}
+bool game::performOperation() {
+	// This method would ideally be called when an operation like move or rotate is invoked
+	 // Each operation costs 1 step, adjust as necessary
+	if (stepsRemaining >= 1) {
+		stepsRemaining -= 1;
+		// Perform the operation logic here
+		return true;
+	}
+	else {
+		printMessage("Not enough steps remaining to perform this operation!");
+		return false;
+	}
+}
+//int game::getbounes()
+//{
+//	int minstep = 13 + Current_gameLevel;
+//	//maybe 
+//	if (stepsRemaining>minstep) {
+//
+//		Current_score += 5;
+//
+//	}
+//	return ;
+//}
+
+int game::getRemainingsteps()
+{
+	stepsRemaining--;
+	if (stepsRemaining < 0) {
+		stepsRemaining = 0;
+	}
+	return 0;
 }
 
 

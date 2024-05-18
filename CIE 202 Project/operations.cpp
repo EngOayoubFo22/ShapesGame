@@ -84,6 +84,7 @@ void operIncResize::Act()
 	point ref = psh->getRefPoint();
 	psh->resize(4);
 	pGame->incrementStep1();
+	pGame->getRemainingsteps();
 	toolbar* tolbar = pGame->getToolBar();
 	tolbar->GameLevelScoreLives(this->pGame);
 
@@ -96,6 +97,7 @@ void operFlip::Act()
 	point ref = psh->getRefPoint();
 	psh->flip();
 	pGame->incrementStep1();
+	pGame->getRemainingsteps();
 	toolbar* tolbar = pGame->getToolBar();
 	tolbar->GameLevelScoreLives(this->pGame);
 }
@@ -111,6 +113,7 @@ void operRotate::Act()
 		activeShape->rotate();
 		pGrid->draw();
 	}
+	pGame->getRemainingsteps();
 	pGame->incrementStep1();
 	toolbar* tolbar = pGame->getToolBar();
 	tolbar->GameLevelScoreLives(this->pGame);
@@ -323,6 +326,8 @@ void operDelete::Act()
 {
 	grid* pGrid = pGame->getGrid();
 	//pGrid->clearGridArea();
+	pGame->getstep1();
+	pGame->getRemainingsteps();
 	pGrid->drawAllButActiveShape();
 
 	

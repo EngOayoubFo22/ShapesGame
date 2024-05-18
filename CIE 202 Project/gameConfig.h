@@ -121,6 +121,9 @@ enum toolbarItem //The items of the  toolbar (you should add more items)
 	ITM_Actual_Level,
 	ITM_String_Step,
 	ITM_Actual_Step,
+	ITM_String_RemainStep,
+	ITM_Actual_RemainStep,
+
 	//TODO: Add more items names here
 	ITM_CNT		//no. of toolbar items ==> This should be the last line in this enum
 
