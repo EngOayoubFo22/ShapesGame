@@ -50,7 +50,7 @@ void Rect::move(float X, float Y)
 
 void Rect::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -104,7 +104,7 @@ circle::circle(game* r_pGame, point ref, float r) :shape(r_pGame, ref) {
 }
 void circle::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -168,7 +168,7 @@ Triangle::Triangle(game* r_pGame, point ref, float sidee) :shape(r_pGame, ref )
 }
 void Triangle::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -283,7 +283,7 @@ fTriangle::fTriangle(game* r_pGame, point ref, float sidee) :shape(r_pGame, ref)
 }
 void fTriangle::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }

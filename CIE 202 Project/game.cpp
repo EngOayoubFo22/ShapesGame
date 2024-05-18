@@ -90,10 +90,12 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 			break;
 	case ITM_Decrease:
 		op = new operDecResize(this);
+		step1++;
 		printMessage("You Decreased the Size");
 		break;
 	case ITM_Delete:
 		op = new operDelete(this);
+		step1++;
 		printMessage("You Deleted this Item");
 			break;
 	case ITM_Hint:
@@ -101,6 +103,7 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_Increase:
 		op = new operIncResize(this);
+		step1++;
 		printMessage("You Increased this items size");
 		break;
 	case ITM_Rotate:
@@ -109,6 +112,7 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		printMessage("You Rotated this Item");
 		break;
 	case ITM_Refresh:
+		step1++;
 		
 		op = new operRefresh(this);
 		
@@ -137,6 +141,7 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_FLIP:
 		op = new operFlip(this);
+		step1++;
 			printMessage("You clicked on Flip");
 		break;
 	}
@@ -199,6 +204,11 @@ grid* game::getGrid() const
 toolbar* game::getToolBar() const
 {
 	return gameToolbar;
+}
+
+int game::getstep1()
+{
+	return step1;
 }
 
 

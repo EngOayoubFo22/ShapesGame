@@ -34,6 +34,8 @@ toolbar::toolbar(game* pG)
 	toolbarItemImages[ITM_Actual_Score] = to_string(pGame->getCurrentScore());
 	toolbarItemImages[ITM_String_Level] = "Level = ";
 	toolbarItemImages[ITM_Actual_Level] = to_string(pGame->getCurrentGameLevel());
+	toolbarItemImages[ITM_Actual_Step] = to_string(pGame->getstep1());
+	toolbarItemImages[ITM_String_Step] = "step";
 
 	//TODO: Prepare image for each toolbar item and add it to the list
 

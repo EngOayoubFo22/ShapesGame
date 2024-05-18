@@ -112,13 +112,15 @@ enum toolbarItem //The items of the  toolbar (you should add more items)
 	ITM_Save_and_Load,
 	
 
-
+	
 	ITM_Actual_Lives,
 	ITM_String_Lives,
 	ITM_String_Score,
 	ITM_Actual_Score,
 	ITM_String_Level,
 	ITM_Actual_Level,
+	ITM_String_Step,
+	ITM_Actual_Step,
 	//TODO: Add more items names here
 	ITM_CNT		//no. of toolbar items ==> This should be the last line in this enum
 

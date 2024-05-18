@@ -24,7 +24,7 @@ void shape::resize(int size) {
 	RefPoint.y += smallY;
 }
 
-point shape:: getRefPoint() const {
+point shape:: getRefPoint()  {
 	return RefPoint;
 }
 
