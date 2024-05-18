@@ -12,17 +12,24 @@ Sign::Sign(game* r_pGame, point ref, float rndwdth,float rndheight ,float rndwdt
 	top = new Rect(pGame, topRef, rndheight, rndwdth);
 	base = new Rect(pGame, baseRef, rndhght1, rndwdth1);
 }
-void Sign::resize(float size)
+void Sign::resize(int size)
 {
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
+
 	point pBupdate;
 
-	pBupdate.x = (base->pref().x - top->pref().x) * size + top->pref().x;
-	pBupdate.y = (base->pref().y - top->pref().y) * size + top->pref().y;
+	pBupdate.x = (base->pref().x - top->pref().x) * x + top->pref().x;
+	pBupdate.y = (base->pref().y - top->pref().y) * x + top->pref().y;
 
 	base->setRefPoint(pBupdate);
 	top->resize(size);
 	base->resize(size);
 }
+
 void Sign::rotate() {
 
 	double cos90 = 0;
@@ -77,19 +84,26 @@ iceCream::iceCream(game* r_pGame, point ref,float circl , float circl1 , float f
 	triang = new fTriangle(pGame, triRef, 3* ftriaingle);
 	circ1 = new circle(pGame, top1ref, circl1);
 }
-void iceCream::resize(float size)
+void iceCream::resize(int size)
 {
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
 	circ->resize(size);
 	circ1->resize(size);
 
 	point nc, tri;
-	tri = { ((triang->pref().x - circ->pref().x) * size + circ->pref().x), ((triang->pref().y - circ->pref().y) * size + circ->pref().y) };
-	nc = nc = { ((circ1->pref().x - circ->pref().x) * size + circ->pref().x), ((circ1->pref().y - circ->pref().y) * size + circ->pref().y) };
+	tri = { ((triang->pref().x - circ->pref().x) * x + circ->pref().x), ((triang->pref().y - circ->pref().y) * x + circ->pref().y) };
+	nc = nc = { ((circ1->pref().x - circ->pref().x) * x + circ->pref().x), ((circ1->pref().y - circ->pref().y) * x + circ->pref().y) };
+
 	circ1->setRefPoint(nc);
 	triang->setRefPoint(tri);
 	triang->resize(size);
 	triang->rotate(), triang->rotate(), triang->rotate(), triang->rotate();
 }
+
 void iceCream::draw() const
 {
 	circ->draw();
@@ -187,15 +201,21 @@ void fanoos::draw() const
 	mid->draw();
 	bottom->draw();
 }
-void fanoos::resize(float size)
+
+void fanoos::resize(int size)
 {
 	mid->resize(size);
 	bottom->resize(size);
 	top->resize(size);
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
 
 	point rmid, rbot;
-	rmid  = { ((mid->pref().x - top->pref().x) * size + top->pref().x), ((mid->pref().y - top->pref().y) * size + top->pref().y) };
-	rbot = { ((bottom->pref().x - top->pref().x) * size + top->pref().x), ((bottom->pref().y - top->pref().y) * size + top->pref().y) };
+	rmid = { ((mid->pref().x - top->pref().x) * x + top->pref().x), ((mid->pref().y - top->pref().y) * x + top->pref().y) };
+	rbot = { ((bottom->pref().x - top->pref().x) * x + top->pref().x), ((bottom->pref().y - top->pref().y) * x + top->pref().y) };
 	mid->setRefPoint(rmid);
 	bottom->setRefPoint(rbot);
 
@@ -211,8 +231,9 @@ void fanoos::resize(float size)
 	mid->rotate();
 	bottom->rotate();
 	top->rotate();
-	
+
 }
+
 void fanoos::move(float X, float Y)
 {
 	top->move(X, Y);   // Assuming rect is a pointer to Rect
@@ -256,16 +277,22 @@ House::House(game* r_pGame, point ref, float rectwidth , float rectheight , floa
 	t1 = new Triangle(pGame, uptrig, triangle2);
 
 }
-void House::resize(float size)
+void House::resize(int size)
 {
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
+
 	up->resize(size);
 	down->resize(size);
 	t1->resize(size);
 	point downn, tr;
-	downn.x = (down->pref().x - up->pref().x) * size + up->pref().x;
-	downn.y = (down->pref().y - up->pref().y) * size + up->pref().y;
-	tr.x = (t1->pref().x - up->pref().x) * size + up->pref().x;
-	tr.y = (t1->pref().y - up->pref().y) * size + up->pref().y;
+	downn.x = (down->pref().x - up->pref().x) * x + up->pref().x;
+	downn.y = (down->pref().y - up->pref().y) * x + up->pref().y;
+	tr.x = (t1->pref().x - up->pref().x) * x + up->pref().x;
+	tr.y = (t1->pref().y - up->pref().y) * x + up->pref().y;
 
 	down->setRefPoint(downn);
 	t1->setRefPoint(tr);
@@ -273,6 +300,7 @@ void House::resize(float size)
 	up->rotate(); up->rotate(); up->rotate(); up->rotate();
 	t1->rotate(); t1->rotate(); t1->rotate(); t1->rotate();
 }
+
 void House::rotate()
 {
 
@@ -346,12 +374,18 @@ Car::Car(game* r_pGame, point ref, float sidee , float radius , float length , f
 
 
 }
-void Car::resize(float size)
+void Car::resize(int size)
 {
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
+
 	point cira, cirb, trig;
-	cira = { ((cir1->pref().x - rect->pref().x) * size + rect->pref().x), ((cir1->pref().y - rect->pref().y) * size + rect->pref().y) };
-	cirb = { ((cir2->pref().x - rect->pref().x) * size + rect->pref().x), ((cir2->pref().y - rect->pref().y) * size + rect->pref().y) };
-	trig = { ((t1->pref().x - rect->pref().x) * size + rect->pref().x), ((t1->pref().y - rect->pref().y) * size + rect->pref().y) };
+	cira = { ((cir1->pref().x - rect->pref().x) * x + rect->pref().x), ((cir1->pref().y - rect->pref().y) * x + rect->pref().y) };
+	cirb = { ((cir2->pref().x - rect->pref().x) * x + rect->pref().x), ((cir2->pref().y - rect->pref().y) * x + rect->pref().y) };
+	trig = { ((t1->pref().x - rect->pref().x) * x + rect->pref().x), ((t1->pref().y - rect->pref().y) * x + rect->pref().y) };
 
 	cir1->setRefPoint(cira);
 	cir2->setRefPoint(cirb);
@@ -366,6 +400,7 @@ void Car::resize(float size)
 	rect->resize(size);
 
 }
+
 void Car::draw() const
 {
 	rect->draw();
@@ -452,27 +487,33 @@ Tree::Tree(game* r_pGame, point ref, float rectWidth, float rectheight, float tr
 	c1 = new circle(pGame, cir, circlerad);
 
 }
-void Tree::resize(float size)
+void Tree::resize(int size)
 {
 	t1->resize(size);
 	t2->resize(size);
 	r1->resize(size);
 	c1->resize(size);
 	point pt, pr, pc;
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
 
-	pt.x = (t2->pref().x - t1->pref().x) * size + t1->pref().x;
-	pt.y = (t2->pref().y - t1->pref().y) * size + t1->pref().y;
+	pt.x = (t2->pref().x - t1->pref().x) * x + t1->pref().x;
+	pt.y = (t2->pref().y - t1->pref().y) * x + t1->pref().y;
 
-	pr.x = (r1->pref().x - t1->pref().x) * size + t1->pref().x;
-	pr.y = (r1->pref().y - t1->pref().y) * size + t1->pref().y;
+	pr.x = (r1->pref().x - t1->pref().x) * x + t1->pref().x;
+	pr.y = (r1->pref().y - t1->pref().y) * x + t1->pref().y;
 
-	pc.x = (c1->pref().x - t1->pref().x) * size + t1->pref().x;
-	pc.y = (c1->pref().y - t1->pref().y) * size + t1->pref().y;
+	pc.x = (c1->pref().x - t1->pref().x) * x + t1->pref().x;
+	pc.y = (c1->pref().y - t1->pref().y) * x + t1->pref().y;
 
 	t2->setRefPoint(pt), r1->setRefPoint(pr), c1->setRefPoint(pc);
-	t2->rotate(),t2->rotate(), t2->rotate(), t2->rotate();
+	t2->rotate(), t2->rotate(), t2->rotate(), t2->rotate();
 	t1->rotate(), t1->rotate(), t1->rotate(), t1->rotate();
 }
+
 void Tree::rotate() {
 
 

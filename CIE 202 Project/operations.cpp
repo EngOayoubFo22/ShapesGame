@@ -69,7 +69,7 @@ void operDecResize::Act()
 	grid * pGrid = pGame->getGrid();
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
-	psh->resize(1/1.1);
+	psh->resize(2);
 	
 }
 
@@ -79,7 +79,7 @@ void operIncResize::Act()
 	grid* pGrid = pGame->getGrid();
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
-	psh->resize(1.1);
+	psh->resize(4);
 
 }
 
@@ -335,8 +335,8 @@ operSave::operSave(game* r_pGame) : operation(r_pGame) {
 void operSave::Act()
 {
 	grid* shapesGrid = pGame->getGrid();
-	ofstream GameProgress("SaveLoad//GameProgress.txt");
-	FILE* progress = fopen("SaveLoad//GameProgress.txt", "w");
+	ofstream GameProgress("GameProgress.txt");
+	FILE* progress = fopen("GameProgress.txt", "w");
 	/*if (!GameProgress) {
 		cout << "Error opening file for writing" << endl;
 		return;
@@ -346,8 +346,8 @@ void operSave::Act()
 	int score = pGame->getCurrentScore();
 	int level = pGame->getCurrentGameLevel();
 
-	GameProgress << lives << " ";
-	GameProgress << score << " ";
+	GameProgress << lives << endl;
+	GameProgress << score << endl;
 	GameProgress << level << endl;
 	
 	shape* sh = shapesGrid->getActiveShape();

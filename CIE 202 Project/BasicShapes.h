@@ -12,7 +12,7 @@ public:
 	Rect(game* r_pGame, point ref, float r_hght, float r_wdth);
 	void flip();
 	void move(float deltaX, float deltaY) override;
-	virtual void resize(float size);
+	virtual void resize(int size);
 	void draw() const override;
 	point pref() const;
 	void rotate();
@@ -27,7 +27,7 @@ public:
 	float getRad() const;
 	void setRad(float newRad);
 	circle(game* r_pGame, point ref, float r);	//add more parameters for the constructor if needed
-	virtual void resize(float size);
+	virtual void resize(int size);
 	virtual void draw() const;
 	virtual void rotate();
 	void move(float X, float Y) override;
@@ -44,7 +44,7 @@ public:
 
 	float getSide() const;
 	Triangle(game* r_pGame, point ref, float side);
-	virtual void resize(float size);
+	virtual void resize(int size);
 	virtual void draw() const;
 	void move(float X, float Y) override;
 	void rotate() override;
@@ -62,7 +62,7 @@ public:
 	float getSide() const;
 	void setSide(float newSide);
 	fTriangle(game* r_pGame, point ref, float side);
-	virtual void resize(float size);
+	virtual void resize(int size);
 	virtual void draw() const;
 	void move(float X, float Y) override;
 	void update_points();
