@@ -59,9 +59,9 @@ void shape:: setRefPoint(const point& newPoint) {
 
 void shape::save(ofstream& o)
 {
-	o << RefPoint.x << " " << RefPoint.y << endl;
-	o << rotationcount << endl;
-	o << resizecount << endl;
+	o << RefPoint.x << " " << RefPoint.y << " " << rotationcount << resizecount <<endl;
+	//o << rotationcount << endl;
+	//o << resizecount << endl;
 	/*o << fillColor.toInt() << endl;
 	o << borderColor.toInt() << endl;*/
 
