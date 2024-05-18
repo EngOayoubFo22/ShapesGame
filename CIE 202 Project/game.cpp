@@ -141,7 +141,6 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_FLIP:
 		op = new operFlip(this);
-		step1++;
 			printMessage("You clicked on Flip");
 		break;
 	}
@@ -220,19 +219,27 @@ void game::handleKeyPress(char K) {
 
 	 int Step = 50; 
 	shape* activeShape = shapesGrid->getActiveShape(); 
-	
+
 	switch (K) {
 	case 'w': //up
 		activeShape->move(0, -Step);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 's'://down 
 		activeShape->move(0,Step);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 'a': //right 
 		activeShape->move(-Step, 0);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 'd'://left 
 		activeShape->move(Step, 0);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	}
 
@@ -284,6 +291,11 @@ void game::incrementLevel()
 void game::incrementLives()
 {
 	Lives++;
+}
+
+void game::incrementStep1()
+{
+	step1++;
 }
 
 void game::DecrementLives()

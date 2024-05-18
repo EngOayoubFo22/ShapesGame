@@ -35,6 +35,7 @@ public:
 	void incrementScore();
 	void incrementLevel();
 	void incrementLives();
+	void incrementStep1();
 	void DecrementLives();
 	void DecrementLevel();
 	void DecrementScore();

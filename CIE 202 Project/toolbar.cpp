@@ -28,14 +28,6 @@ toolbar::toolbar(game* pG)
 	toolbarItemImages[ITM_Save_and_Load] = "images\\toolbarItems\\Save_and_Load.jpeg";
 	toolbarItemImages[ITM_Select_GAME_LEVEl] = "images\\toolbarItems\\Game_Level.jpeg";
 	toolbarItemImages[ITM_EXIT] = "images\\toolbarItems\\toolbar_Exit.jpg";
-	toolbarItemImages[ITM_Actual_Lives] = to_string(pGame->getCurrentLives());
-	toolbarItemImages[ITM_String_Lives] = " Lives: ";
-	toolbarItemImages[ITM_String_Score] = "Score = ";
-	toolbarItemImages[ITM_Actual_Score] = to_string(pGame->getCurrentScore());
-	toolbarItemImages[ITM_String_Level] = "Level = ";
-	toolbarItemImages[ITM_Actual_Level] = to_string(pGame->getCurrentGameLevel());
-	toolbarItemImages[ITM_Actual_Step] = to_string(pGame->getstep1());
-	toolbarItemImages[ITM_String_Step] = "step";
 
 	//TODO: Prepare image for each toolbar item and add it to the list
 
@@ -82,11 +74,13 @@ void toolbar::GameLevelScoreLives(game* pG)
 	width = config.windWidth;
 	this->pGame = pG;
 	toolbarItemImages[ITM_Actual_Lives] = to_string(pGame->getCurrentLives());
-	toolbarItemImages[ITM_String_Lives] = " Lives: ";
+	toolbarItemImages[ITM_String_Lives] = " Lives)";
 	toolbarItemImages[ITM_String_Score] = "Score = ";
 	toolbarItemImages[ITM_Actual_Score] = to_string(pGame->getCurrentScore());
 	toolbarItemImages[ITM_String_Level] = "Level = ";
 	toolbarItemImages[ITM_Actual_Level] = to_string(pGame->getCurrentGameLevel());
+	toolbarItemImages[ITM_String_Step] = "Steps = ";
+	toolbarItemImages[ITM_Actual_Step] = to_string(pGame->getstep1());
 	ClearScoreArea(pG);
 	for (int i = 16; i < ITM_CNT; i++)
 	{
@@ -128,6 +122,18 @@ void toolbar::GameLevelScoreLives(game* pG)
 				pWind->SetFont(20, BOLD, BY_NAME);
 				pWind->DrawString((i - 5) * config.toolbarItemWidth + 60, 35, toolbarItemImages[i]);
 		}
+			else if (i == 22)
+			 {
+				 pWind->SetPen(BLACK, 20);
+				 pWind->SetFont(20, BOLD, BY_NAME);
+				 pWind->DrawString((i - 6) * config.toolbarItemWidth + 75, 0, toolbarItemImages[i]);
+			 }
+			else if (i == 23)
+			 {
+				 pWind->SetPen(BLACK, 20);
+				 pWind->SetFont(20, BOLD, BY_NAME);
+				 pWind->DrawString((i - 7) * config.toolbarItemWidth + 150, 0, toolbarItemImages[i]);
+			 }
 	}
 	
 }
@@ -138,7 +144,7 @@ void toolbar::ClearScoreArea(game* r_pGame)
 	window* pWind = pGame->getWind();
 	pWind->SetPen(WHITE);
 	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(16 * config.toolbarItemWidth - 5, 0, 18 * config.toolbarItemWidth - 5, config.toolBarHeight - 5);
+	pWind->DrawRectangle(16 * config.toolbarItemWidth - 5, 0, 19 * config.toolbarItemWidth - 5, config.toolBarHeight - 5);
 
 }
 

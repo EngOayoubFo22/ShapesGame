@@ -70,6 +70,9 @@ void operDecResize::Act()
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->resize(2);
+	pGame->incrementStep1();
+	toolbar* tolbar = pGame->getToolBar();
+	tolbar->GameLevelScoreLives(this->pGame);
 	
 }
 
@@ -80,6 +83,9 @@ void operIncResize::Act()
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->resize(4);
+	pGame->incrementStep1();
+	toolbar* tolbar = pGame->getToolBar();
+	tolbar->GameLevelScoreLives(this->pGame);
 
 }
 
@@ -89,6 +95,9 @@ void operFlip::Act()
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->flip();
+	pGame->incrementStep1();
+	toolbar* tolbar = pGame->getToolBar();
+	tolbar->GameLevelScoreLives(this->pGame);
 }
 
 
@@ -102,6 +111,9 @@ void operRotate::Act()
 		activeShape->rotate();
 		pGrid->draw();
 	}
+	pGame->incrementStep1();
+	toolbar* tolbar = pGame->getToolBar();
+	tolbar->GameLevelScoreLives(this->pGame);
 }
 
 
@@ -303,6 +315,7 @@ void operAddCar::Act()
 	//Add the shape to the grid
 	grid* pGrid = pGame->getGrid();
 	pGrid->setActiveShape(psh);
+	
 
 }
 
