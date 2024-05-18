@@ -68,7 +68,7 @@ shape* grid::getActiveShape()
 shape* grid::getShapesList()
 {
 
-	return shapeList[0];
+	return *shapeList;
 }
 
 void grid::deleteShapesList()
