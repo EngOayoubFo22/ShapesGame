@@ -75,18 +75,17 @@ toolbarItem toolbar::getItemClicked(int x)
 
 void toolbar::GameLevelScoreLives(game* pG)
 {
+	window* pWind = pGame->getWind();
 	height = config.toolBarHeight;
 	width = config.windWidth;
 	this->pGame = pG;
-	window* pWind = pGame->getWind();
-	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(16*config.toolbarItemWidth - 5, 0, 18 * config.toolbarItemWidth- 5, config.toolBarHeight - 5);
 	toolbarItemImages[ITM_Actual_Lives] = to_string(pGame->getCurrentLives());
 	toolbarItemImages[ITM_String_Lives] = " Lives: ";
 	toolbarItemImages[ITM_String_Score] = "Score = ";
 	toolbarItemImages[ITM_Actual_Score] = to_string(pGame->getCurrentScore());
 	toolbarItemImages[ITM_String_Level] = "Level = ";
 	toolbarItemImages[ITM_Actual_Level] = to_string(pGame->getCurrentGameLevel());
+	ClearScoreArea(pG);
 	for (int i = 16; i < ITM_CNT; i++)
 	{
 		
@@ -134,9 +133,10 @@ void toolbar::GameLevelScoreLives(game* pG)
 void toolbar::ClearScoreArea(game* r_pGame)
 {
 	this->pGame = r_pGame;
-	window* pw = pGame->getWind();
-	pw->SetBrush(WHITE);
-	pw->DrawRectangle(500, 5, 700, 60);
+	window* pWind = pGame->getWind();
+	pWind->SetPen(WHITE);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(16 * config.toolbarItemWidth - 5, 0, 18 * config.toolbarItemWidth - 5, config.toolBarHeight - 5);
 
 }
 
