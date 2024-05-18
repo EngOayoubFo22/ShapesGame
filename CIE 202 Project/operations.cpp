@@ -70,9 +70,12 @@ void operDecResize::Act()
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->resize(2);
-	pGame->incrementStep1();
-	toolbar* tolbar = pGame->getToolBar();
-	tolbar->GameLevelScoreLives(this->pGame);
+	if (pGrid->getActiveShape())
+	{
+		pGame->incrementStep1();
+		toolbar* tolbar = pGame->getToolBar();
+		tolbar->GameLevelScoreLives(this->pGame);
+	}
 	
 }
 
@@ -83,9 +86,12 @@ void operIncResize::Act()
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->resize(4);
-	pGame->incrementStep1();
-	toolbar* tolbar = pGame->getToolBar();
-	tolbar->GameLevelScoreLives(this->pGame);
+	if (pGrid->getActiveShape())
+	{
+		pGame->incrementStep1();
+		toolbar* tolbar = pGame->getToolBar();
+		tolbar->GameLevelScoreLives(this->pGame);
+	}
 
 }
 
@@ -95,9 +101,12 @@ void operFlip::Act()
 	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->flip();
-	pGame->incrementStep1();
-	toolbar* tolbar = pGame->getToolBar();
-	tolbar->GameLevelScoreLives(this->pGame);
+	if (pGrid->getActiveShape())
+	{
+		pGame->incrementStep1();
+		toolbar* tolbar = pGame->getToolBar();
+		tolbar->GameLevelScoreLives(this->pGame);
+	}
 }
 
 
@@ -111,9 +120,12 @@ void operRotate::Act()
 		activeShape->rotate();
 		pGrid->draw();
 	}
-	pGame->incrementStep1();
-	toolbar* tolbar = pGame->getToolBar();
-	tolbar->GameLevelScoreLives(this->pGame);
+	if (pGrid->getActiveShape())
+	{
+		pGame->incrementStep1();
+		toolbar* tolbar = pGame->getToolBar();
+		tolbar->GameLevelScoreLives(this->pGame);
+	}
 }
 
 
@@ -324,7 +336,12 @@ void operDelete::Act()
 	grid* pGrid = pGame->getGrid();
 	//pGrid->clearGridArea();
 	pGrid->drawAllButActiveShape();
-
+	if (pGrid->getActiveShape())
+	{
+		pGame->incrementStep1();
+		toolbar* tolbar = pGame->getToolBar();
+		tolbar->GameLevelScoreLives(this->pGame);
+	}
 	
 
 }
@@ -333,9 +350,12 @@ void operRefresh::Act()
 	grid* shapesGrid = pGame->getGrid();
 	shapesGrid->drawAllButRandomShape();
 	shapesGrid->DrawRandomShape();
-	pGame->DecrementScore();
-	toolbar* tolbar = pGame->getToolBar();
-	tolbar->GameLevelScoreLives(this->pGame);
+	if (shapesGrid->getActiveShape())
+	{
+		pGame->incrementStep1();
+		toolbar* tolbar = pGame->getToolBar();
+		tolbar->GameLevelScoreLives(this->pGame);
+	}
 
 }
 
