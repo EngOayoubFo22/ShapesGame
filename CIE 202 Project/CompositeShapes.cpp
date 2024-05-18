@@ -14,7 +14,7 @@ Sign::Sign(game* r_pGame, point ref, float rndwdth,float rndheight ,float rndwdt
 }
 void Sign::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -86,7 +86,7 @@ iceCream::iceCream(game* r_pGame, point ref,float circl , float circl1 , float f
 }
 void iceCream::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -165,8 +165,8 @@ void iceCream::flip() {
 ////////////////////////////////////////////////////  class fanoos  ///////////////////////////////////////
 void fanoos::rotate() {
 
-	double cos90 = 0;
-	double sin90 = 1;
+	int cos90 = 0;
+	int sin90 = 1;
 	point nref1, nref2;
 
 	nref1.x = (mid->getRefPoint().x - top->getRefPoint().x) * cos90 - (mid->getRefPoint().y - top->getRefPoint().y) * sin90 + top->getRefPoint().x;
@@ -207,7 +207,7 @@ void fanoos::resize(int size)
 	mid->resize(size);
 	bottom->resize(size);
 	top->resize(size);
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -242,8 +242,8 @@ void fanoos::move(float X, float Y)
 	
 }
 void fanoos::flip() {
-	double cos180 = -1;
-	double sin180 = 0;
+	int cos180 = -1;
+	int sin180 = 0;
 	point nref1, nref2;
 
 	nref1.x = (mid->getRefPoint().x - top->getRefPoint().x) * cos180 - (mid->getRefPoint().y - top->getRefPoint().y) * sin180 + top->getRefPoint().x;
@@ -279,7 +279,7 @@ House::House(game* r_pGame, point ref, float rectwidth , float rectheight , floa
 }
 void House::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -304,8 +304,8 @@ void House::resize(int size)
 void House::rotate()
 {
 
-	double cos90 = 0;
-	double sin90 = 1;
+	int cos90 = 0;
+	int sin90 = 1;
 
 	point nref, nref1;
 	nref.x = (up->getRefPoint().x - down->getRefPoint().x) * cos90 - (up->getRefPoint().y - down->getRefPoint().y) * sin90 + down->getRefPoint().x;
@@ -337,8 +337,8 @@ void House::move(float X, float Y)
 }
 void House::flip() {
 
-	double cos180 = -1;
-	double sin180 = 0;
+	int cos180 = -1;
+	int sin180 = 0;
 
 	point nref, nref1;
 	nref.x = (up->getRefPoint().x - down->getRefPoint().x) * cos180 - (up->getRefPoint().y - down->getRefPoint().y) * sin180 + down->getRefPoint().x;
@@ -376,7 +376,7 @@ Car::Car(game* r_pGame, point ref, float sidee , float radius , float length , f
 }
 void Car::resize(int size)
 {
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -419,8 +419,8 @@ void Car::move(float X, float Y)
 void Car::rotate()
 {
 
-	double cos90 = 0;
-	double sin90 = 1;
+	int cos90 = 0;
+	int sin90 = 1;
 
 	point nref1, nref2, nref3;
 	nref1.x = (cir1->getRefPoint().x - rect->getRefPoint().x) * cos90 - (cir1->getRefPoint().y - rect->getRefPoint().y) * sin90 + rect->getRefPoint().x;
@@ -444,8 +444,8 @@ void Car::rotate()
 
 }
 void Car::flip() {
-	double cos180 = -1;
-	double sin180 = 0;
+	int cos180 = -1;
+	int sin180 = 0;
 
 	point nref1, nref2, nref3;
 	nref1.x = (cir1->getRefPoint().x - rect->getRefPoint().x) * cos180 - (cir1->getRefPoint().y - rect->getRefPoint().y) * sin180 + rect->getRefPoint().x;
@@ -494,7 +494,7 @@ void Tree::resize(int size)
 	r1->resize(size);
 	c1->resize(size);
 	point pt, pr, pc;
-	float x;
+	float x = 1;
 	if (size == 1) { x = 0.25; }
 	if (size == 2) { x = 0.5; }
 	if (size == 3) { x = 1; }
@@ -517,8 +517,8 @@ void Tree::resize(int size)
 void Tree::rotate() {
 
 
-	double cos90 = 0;
-	double sin90 = 1;
+	int cos90 = 0;
+	int sin90 = 1;
 
 	point nref1, nref2, nref3;
 	nref1.x = (t1->getRefPoint().x - r1->getRefPoint().x) * cos90 - (t1->getRefPoint().y - r1->getRefPoint().y) * sin90 + r1->getRefPoint().x;
@@ -555,8 +555,8 @@ void Tree::move(float deltaX, float deltaY)
 }
 void Tree::flip()
 {
-	double cos180 = -1;
-	double sin180 = 0;
+	int cos180 = -1;
+	int sin180 = 0;
 
 	point nref1, nref2, nref3;
 	nref1.x = (t1->getRefPoint().x - r1->getRefPoint().x) * cos180 - (t1->getRefPoint().y - r1->getRefPoint().y) * sin180 + r1->getRefPoint().x;
