@@ -346,8 +346,8 @@ void operSave::Act()
 	int score = pGame->getCurrentScore();
 	int level = pGame->getCurrentGameLevel();
 
-	GameProgress << lives << endl;
-	GameProgress << score << endl;
+	GameProgress << lives << " ";
+	GameProgress << score << " ";
 	GameProgress << level << endl;
 	
 	shape* sh = shapesGrid->getActiveShape();
