@@ -246,7 +246,7 @@ void game::run()
 	toolbarItem clickedItem = ITM_CNT;
 
 	
-	pWind->ChangeTitle("- - - SHAPE HUNT (CIE 101 / CIE202 - project) - - -");
+	pWind->ChangeTitle("- - - SHAPE HUNT (CIE 101 project)/\(SEC2_T05) - - -");
 
 	char K;
 	do {
