@@ -118,3 +118,9 @@ public:
 	virtual void Act();
 };
 
+
+class operSave :public operation {
+public:
+	operSave(game* r_pGame);
+	virtual void Act();
+};

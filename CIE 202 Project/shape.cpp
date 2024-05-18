@@ -1,7 +1,8 @@
 #include "shape.h"
 #include "game.h"
 #include "gameConfig.h"
-
+#include"fstream"
+using namespace std;
 
 
 shape::shape(game* r_pGame, point ref)
@@ -10,9 +11,12 @@ shape::shape(game* r_pGame, point ref)
 	pGame = r_pGame;
 	fillColor = config.fillColor;
 	borderColor = config.penColor;
+	int rotationcount=0;
+	int resizecount=0;
 }
 
 void shape::resize(float size) {
+	
 }
 
  void shape::move(float smallX, float smallY)
@@ -28,3 +32,16 @@ point shape:: getRefPoint() const {
 void shape:: setRefPoint(const point& newPoint) {
 	RefPoint = newPoint;
 }
+
+void shape::save(ofstream& o)
+{
+	o << RefPoint.x << " " << RefPoint.y << endl;
+	o << rotationcount << endl;
+	o << resizecount << endl;
+	/*o << fillColor.toInt() << endl;
+	o << borderColor.toInt() << endl;*/
+
+}
+
+
+

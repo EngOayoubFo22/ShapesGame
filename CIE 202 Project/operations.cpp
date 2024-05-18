@@ -1,6 +1,9 @@
 #include "operations.h"
 #include "game.h"
 #include "CompositeShapes.h"
+#include <fstream>
+#include<iostream>
+using namespace std;
 /////////////////////////////////// class operation  //////////////////
 operation::operation(game* r_pGame)
 {
@@ -64,7 +67,7 @@ void operDecResize::Act()
 {
 
 	grid * pGrid = pGame->getGrid();
-	shape* psh = pGrid->getActiveshape();
+	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->resize(1/1.1);
 	
@@ -74,7 +77,7 @@ void operIncResize::Act()
 {
 
 	grid* pGrid = pGame->getGrid();
-	shape* psh = pGrid->getActiveshape();
+	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->resize(1.1);
 
@@ -83,7 +86,7 @@ void operIncResize::Act()
 void operFlip::Act()
 {
 	grid* pGrid = pGame->getGrid();
-	shape* psh = pGrid->getActiveshape();
+	shape* psh = pGrid->getActiveShape();
 	point ref = psh->getRefPoint();
 	psh->flip();
 }
@@ -94,7 +97,7 @@ void operRotate::Act()
 {
 
 	grid* pGrid = pGame->getGrid();
-	shape* activeShape = pGrid->getActiveshape();
+	shape* activeShape = pGrid->getActiveShape();
 	if (activeShape) {
 		activeShape->rotate();
 		pGrid->draw();
@@ -324,3 +327,39 @@ void operRefresh::Act()
 }
 
 
+
+operSave::operSave(game* r_pGame) : operation(r_pGame) {
+
+}
+
+void operSave::Act()
+{
+	grid* shapesGrid = pGame->getGrid();
+	ofstream GameProgress("GameProgress.txt");
+	FILE* progress = fopen("GameProgress.txt", "w");
+	/*if (!GameProgress) {
+		cout << "Error opening file for writing" << endl;
+		return;
+	}*/
+
+	int lives = pGame->getCurrentLives();
+	int score = pGame->getCurrentScore();
+	int level = pGame->getCurrentGameLevel();
+
+	GameProgress << lives << endl;
+	GameProgress << score << endl;
+	GameProgress << level << endl;
+	
+	shape* sh = shapesGrid->getActiveShape();
+	sh->save(GameProgress);
+	
+	shape* shapes=shapesGrid->getShapesList();
+	for (int i = 0; i < shapesGrid->getshapecount(); i++)
+	{
+		shapes[i].save(GameProgress);
+	}
+
+	
+
+	GameProgress.close();
+}

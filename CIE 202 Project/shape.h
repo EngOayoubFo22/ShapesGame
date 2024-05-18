@@ -32,6 +32,8 @@ protected:
 	color fillColor;	//shape fill color
 	color borderColor;	//shape border color
 	double static scale;
+	int rotationcount;
+	int resizecount;
 public:
     shape(game* r_pGame, point ref);
 	
@@ -47,7 +49,7 @@ public:
 	
 	void setRefPoint(const point& newPoint);
 	point getRefPoint() const;
-							  
+	void save(ofstream& out);
 	//-- The following functions should be supported by the shape class
 	//-- It should be overridden by each inherited shape
 	//-- Decide the parameters that you should pass to each function	

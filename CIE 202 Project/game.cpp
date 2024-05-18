@@ -82,6 +82,7 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		printMessage("You Clicked on Create A Rectangle");
 		break;*/
 	case ITM_Save_and_Load:
+		op = new operSave(this);
 		printMessage("You Cliked on Save And Load");
 		break;
 	case ITM_Select_GAME_LEVEl:

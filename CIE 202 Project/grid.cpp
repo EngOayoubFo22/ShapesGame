@@ -162,3 +162,7 @@ void grid::drawAllButRandomShape()
 		}
 		return nullptr;
 	}
+	
+	int grid::getshapecount() {
+		return shapeCount;
+	}

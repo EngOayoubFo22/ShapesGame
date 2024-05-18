@@ -32,11 +32,11 @@ public:
 	shape* getActiveShape();
 	shape* getShapesList();
 	void deleteShapesList();
-
-	shape* grid::getActiveshape()const { return activeShape; }
+	int getshapecount();
+	
 	void drawAllButActiveShape();
 	void drawAllButRandomShape();
 	void moveActiveShape(int dx, int dy);
 };
-
+ 
 
