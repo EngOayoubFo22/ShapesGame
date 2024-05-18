@@ -131,7 +131,7 @@ void grid::drawAllButRandomShape()
 		window* pw = pGame->getWind();
 		srand(time(0));
 		int ct = 0;
-	
+	// generates random shapes and then generates random size and rotation angle
 		while (ct < pGame->getCurrentGameLevel())
 		{
 			int RndShape = rand() % (6);
