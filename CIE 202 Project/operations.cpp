@@ -335,8 +335,8 @@ operSave::operSave(game* r_pGame) : operation(r_pGame) {
 void operSave::Act()
 {
 	grid* shapesGrid = pGame->getGrid();
-	ofstream GameProgress("GameProgress.txt");
-	FILE* progress = fopen("GameProgress.txt", "w");
+	ofstream GameProgress("SaveLoad//GameProgress.txt");
+	FILE* progress = fopen("SaveLoad//GameProgress.txt", "w");
 	/*if (!GameProgress) {
 		cout << "Error opening file for writing" << endl;
 		return;
@@ -346,8 +346,8 @@ void operSave::Act()
 	int score = pGame->getCurrentScore();
 	int level = pGame->getCurrentGameLevel();
 
-	GameProgress << lives << endl;
-	GameProgress << score << endl;
+	GameProgress << lives << " ";
+	GameProgress << score << " ";
 	GameProgress << level << endl;
 	
 	shape* sh = shapesGrid->getActiveShape();

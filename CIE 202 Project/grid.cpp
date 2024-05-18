@@ -135,7 +135,7 @@ void grid::drawAllButRandomShape()
 		while (ct < pGame->getCurrentGameLevel())
 		{
 			int RndShape = rand() % (6);
-			int RndSize = rand() % 10;
+			int RndSize = 1+ rand() % 5;
 			int RndRotationNo = rand() % 4;
 			shape* psh;
 
@@ -153,7 +153,7 @@ void grid::drawAllButRandomShape()
 				 psh = new iceCream(pGame, { 600,300 });
 	
 			    ct++;
-			psh->resize(1.2);
+			psh->resize(RndSize);
 			for (int i = 0; i < RndRotationNo; i++)
 			{
 				psh->rotate();
