@@ -39,7 +39,7 @@ public:
 	
     virtual void draw() const=0;
 
-	virtual void resize(float size);
+	virtual void resize(int size);
 	virtual void rotate() = 0;
 	virtual void flip() = 0;
 	//for a shape to draw itself on the screen

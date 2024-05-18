@@ -15,8 +15,7 @@ shape::shape(game* r_pGame, point ref)
 	int resizecount=0;
 }
 
-void shape::resize(float size) {
-	
+void shape::resize(int size) {
 }
 
  void shape::move(float smallX, float smallY)

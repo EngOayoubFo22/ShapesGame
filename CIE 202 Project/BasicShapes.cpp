@@ -47,11 +47,18 @@ void Rect::move(float X, float Y)
 	this->RefPoint.x += X;
 	this->RefPoint.y += Y;
 }
-void Rect::resize(float size)
+
+void Rect::resize(int size)
 {
-	hght = hght * size;
-	wdth = wdth * size;
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
+	hght = hght * x;
+	wdth = wdth * x;
 }
+
 void Rect::draw() const
 {
 	window* pW = pGame->getWind();	//get interface window
@@ -95,11 +102,17 @@ void circle::setRad(float newRad)
 circle::circle(game* r_pGame, point ref, float r) :shape(r_pGame, ref) {
 	rad = r;
 }
-void circle::resize(float size)
+void circle::resize(int size)
 {
-	rad = size * rad;
-	
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
+	rad = x * rad;
+
 }
+
 void circle::draw() const
 {
 	window* pW = pGame->getWind();	//get interface window
@@ -153,10 +166,17 @@ Triangle::Triangle(game* r_pGame, point ref, float sidee) :shape(r_pGame, ref )
 		}
 	}
 }
-void Triangle::resize(float size)
+void Triangle::resize(int size)
 {
-	side = size * side; 
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
+
+	side = x * side;
 }
+
 void Triangle::draw() const
 {
 	window* pW = pGame->getWind();
@@ -261,10 +281,16 @@ fTriangle::fTriangle(game* r_pGame, point ref, float sidee) :shape(r_pGame, ref)
 		}
 	}
 }
-void fTriangle::resize(float size)
+void fTriangle::resize(int size)
 {
-	sideee = size * sideee; 
+	float x;
+	if (size == 1) { x = 0.25; }
+	if (size == 2) { x = 0.5; }
+	if (size == 3) { x = 1; }
+	if (size == 4) { x = 2; }
+	sideee = x * sideee;
 }
+
 void fTriangle::move(float X, float Y)
 {
 	this->RefPoint.x += X;
