@@ -110,8 +110,9 @@ void circle::resize(int size)
 	if (size == 3) { x = 1; }
 	if (size == 4) { x = 2; }
 	rad = x * rad;
-
+	
 }
+
 
 void circle::draw() const
 {

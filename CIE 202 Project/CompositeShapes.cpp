@@ -28,6 +28,7 @@ void Sign::resize(int size)
 	base->setRefPoint(pBupdate);
 	top->resize(size);
 	base->resize(size);
+	resizecount++;
 }
 
 int Sign::getType()
@@ -79,6 +80,8 @@ void Sign::rotate() {
 	base->rotate();
 	top->rotate();
 
+	rotationcount++;
+
 }
 void Sign::draw() const
 {
@@ -102,6 +105,8 @@ void Sign::flip() {
 
 	base->flip();
 	top->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -137,6 +142,7 @@ void iceCream::resize(int size)
 	triang->setRefPoint(tri);
 	triang->resize(size);
 	triang->rotate(), triang->rotate(), triang->rotate(), triang->rotate();
+	resizecount++;
 }
 
 int iceCream::getType()
@@ -206,6 +212,7 @@ void iceCream::rotate()
 	circ->draw();
 	circ1->draw();
 	triang->rotate();
+	rotationcount += 2;
 }
 void iceCream::flip() {
 	double cos180 = -1;
@@ -226,6 +233,8 @@ void iceCream::flip() {
 	circ->draw();
 	circ1->draw();
 	triang->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -253,6 +262,8 @@ void fanoos::rotate() {
 	top->rotate();
 	mid->rotate();
 	bottom->rotate();
+
+	rotationcount++;
 }
 fanoos::fanoos(game* r_pGame, point ref,float side1, float side2 , float side3) : shape(r_pGame,ref)
 {
@@ -301,6 +312,8 @@ void fanoos::resize(int size)
 	mid->rotate();
 	bottom->rotate();
 	top->rotate();
+
+	resizecount++;
 
 }
 
@@ -365,6 +378,8 @@ void fanoos::flip() {
 	top->flip();
 	mid->flip();
 	bottom->flip();
+
+	rotationcount += 2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -404,6 +419,8 @@ void House::resize(int size)
 
 	up->rotate(); up->rotate(); up->rotate(); up->rotate();
 	t1->rotate(); t1->rotate(); t1->rotate(); t1->rotate();
+
+	resizecount++;
 }
 
 int House::getType()
@@ -461,6 +478,8 @@ void House::rotate()
 	up->rotate();
 	down->rotate();
 
+	rotationcount += 2;
+
 }
 void House::draw() const
 {
@@ -493,6 +512,8 @@ void House::flip() {
 	t1->flip();
 	up->flip();
 	down->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -538,6 +559,8 @@ void Car::resize(int size)
 	t1->rotate();
 	t1->rotate();
 	rect->resize(size);
+
+	resizecount++;
 
 }
 
@@ -618,6 +641,8 @@ void Car::rotate()
 	cir1->draw();
 	cir2->draw();
 
+	rotationcount++;
+
 }
 void Car::flip() {
 	int cos180 = -1;
@@ -643,6 +668,8 @@ void Car::flip() {
 	cir1->draw();
 	cir2->draw();
 
+	rotationcount += 2;
+
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -657,10 +684,10 @@ Tree::Tree(game* r_pGame, point ref, float rectWidth, float rectheight, float tr
 	point rect = { ref.x, ref.y + (config.TreeShape.topTriangleSide * (sqrt(3) / 2)) + 0.5 * config.TreeShape.rectangleHeight };
 	point cir = { ref.x,ref.y - (config.TreeShape.topTriangleSide * (sqrt(3) / 2)) - config.TreeShape.circleRad };
 
-	t1 = new Triangle(pGame, trig1, triangle1);
-	t2 = new Triangle(pGame, trig2, trianlge2);
-	r1 = new Rect(pGame, rect, rectWidth, rectheight);
-	c1 = new circle(pGame, cir, circlerad);
+	t1 = new Triangle(pGame, trig1, 100);
+	t2 = new Triangle(pGame, trig2, 100);
+	r1 = new Rect(pGame, rect, 130, 30);
+	c1 = new circle(pGame, cir, config.TreeShape.circleRad);
 
 }
 void Tree::resize(int size)
@@ -688,6 +715,8 @@ void Tree::resize(int size)
 	t2->setRefPoint(pt), r1->setRefPoint(pr), c1->setRefPoint(pc);
 	t2->rotate(), t2->rotate(), t2->rotate(), t2->rotate();
 	t1->rotate(), t1->rotate(), t1->rotate(), t1->rotate();
+
+	resizecount++;
 }
 
 int Tree::getType()
@@ -751,6 +780,8 @@ void Tree::rotate() {
 	t1->rotate();
 	t2->rotate();
 	r1->rotate();
+
+	rotationcount++;
 }
 void Tree::draw()const {
 	t1->draw();
@@ -789,5 +820,7 @@ void Tree::flip()
 	t1->flip();
 	t2->flip();
 	r1->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

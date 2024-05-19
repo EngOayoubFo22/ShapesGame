@@ -11,8 +11,8 @@ shape::shape(game* r_pGame, point ref)
 	pGame = r_pGame;
 	fillColor = config.fillColor;
 	borderColor = config.penColor;
-	int rotationcount=0;
-	int resizecount=0;
+	rotationcount=0;
+     resizecount=0;
 }
 int shape::getwidth()
 {
@@ -38,6 +38,16 @@ void shape::resize(int size) {
 	RefPoint.x += smallX;
 	RefPoint.y += smallY;
 }
+
+ int shape::getRotationCount() const
+ {
+	 return rotationcount % 4;
+ }
+
+ int shape::getResizeCount() const
+ {
+	 return resizecount;
+ }
 
 point shape:: getRefPoint()  {
 	return RefPoint;
