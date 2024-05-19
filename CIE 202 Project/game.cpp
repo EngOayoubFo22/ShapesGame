@@ -90,10 +90,12 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 			break;
 	case ITM_Decrease:
 		op = new operDecResize(this);
+		step1++;
 		printMessage("You Decreased the Size");
 		break;
 	case ITM_Delete:
 		op = new operDelete(this);
+		step1++;
 		printMessage("You Deleted this Item");
 			break;
 	case ITM_Hint:
@@ -101,6 +103,7 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_Increase:
 		op = new operIncResize(this);
+		step1++;
 		printMessage("You Increased this items size");
 		break;
 	case ITM_Rotate:
@@ -109,6 +112,7 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		printMessage("You Rotated this Item");
 		break;
 	case ITM_Refresh:
+		step1++;
 		
 		op = new operRefresh(this);
 		
@@ -201,6 +205,11 @@ toolbar* game::getToolBar() const
 	return gameToolbar;
 }
 
+int game::getstep1()
+{
+	return step1;
+}
+
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -210,19 +219,27 @@ void game::handleKeyPress(char K) {
 
 	 int Step = 50; 
 	shape* activeShape = shapesGrid->getActiveShape(); 
-	
+
 	switch (K) {
 	case 'w': //up
 		activeShape->move(0, -Step);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 's'://down 
 		activeShape->move(0,Step);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 'a': //right 
 		activeShape->move(-Step, 0);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 'd'://left 
 		activeShape->move(Step, 0);
+		step1++;
+		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case ' '://check match 
 		;
@@ -240,7 +257,7 @@ void game::run()
 	toolbarItem clickedItem = ITM_CNT;
 
 	
-	pWind->ChangeTitle("- - - SHAPE HUNT (CIE 101 / CIE202 - project) - - -");
+	pWind->ChangeTitle("- - - SHAPE HUNT (CIE 101 project)/\(SEC2_T05) - - -");
 
 	char K;
 	do {
@@ -278,6 +295,11 @@ void game::incrementLevel()
 void game::incrementLives()
 {
 	Lives++;
+}
+
+void game::incrementStep1()
+{
+	step1++;
 }
 
 void game::DecrementLives()

@@ -19,7 +19,7 @@ class game
 	int Current_gameLevel = 2;
 	int Lives = 5;
 	int Current_score = 0;
-
+	int step1 = 0;
 public:
 	game();
 	~game();
@@ -35,6 +35,7 @@ public:
 	void incrementScore();
 	void incrementLevel();
 	void incrementLives();
+	void incrementStep1();
 	void DecrementLives();
 	void DecrementLevel();
 	void DecrementScore();
@@ -44,7 +45,7 @@ public:
 	window* getWind() const;		//returns a pointer to the graphics window
 	grid* getGrid() const;		//returns a pointer to the shapes grid
 	toolbar* getToolBar() const;
-
+	int getstep1();
 	//creates an operation according to the toolbar item clicked
 	operation* createRequiredOperation(toolbarItem clickedItem);
 	void run();	//start the game

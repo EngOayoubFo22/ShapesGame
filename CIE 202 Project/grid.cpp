@@ -169,6 +169,8 @@ void grid::drawAllButRandomShape()
 	// generates random shapes and then generates random size and rotation angle
 		while (ct < pGame->getCurrentGameLevel())
 		{
+			int RndX = -300 + (config.RefX - config.RefX % config.gridSpacing) + rand() % (config.RefX - config.RefX % config.gridSpacing + 200);
+			int RndY = -300 + (config.RefX - config.RefX % config.gridSpacing) + rand() % (config.RefX - config.RefX % config.gridSpacing + 200);
 			int RndShape = rand() % (6);
 			int RndSize = 1+ rand() % 5;
 			int RndRotationNo = rand() % 4;

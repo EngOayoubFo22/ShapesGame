@@ -52,7 +52,7 @@ public:
 	virtual void move(float smallX, float smallY);
 	
 	void setRefPoint(const point& newPoint);
-	point getRefPoint() const;
+	point getRefPoint() ;
 	void save(ofstream& out);
 	//-- The following functions should be supported by the shape class
 	//-- It should be overridden by each inherited shape
