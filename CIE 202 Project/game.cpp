@@ -217,7 +217,7 @@ int game::getstep1()
 void game::handleKeyPress(char K) {
 	if (!shapesGrid) return;
 
-	 int Step = 50; 
+	 int Step = config.gridSpacing; 
 	shape* activeShape = shapesGrid->getActiveShape(); 
 
 	switch (K) {
@@ -276,6 +276,7 @@ void game::run()
 
 				if(clickedItem)
 				shapesGrid->draw(); 
+				//gameToolbar->drawtoolbar(this);
 				//shapesGrid->DrawRandomShape();
 			}
 		}

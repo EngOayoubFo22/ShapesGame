@@ -15,5 +15,6 @@ public:
 	toolbarItem getItemClicked(int x);	//handles clicks on toolbar icons, returns the "enum" of the clicekd item
 	void GameLevelScoreLives(game* r_pGame);
 	void ClearScoreArea(game* r_pGame);
+	void drawtoolbar(game* pg);
 };
 
