@@ -30,6 +30,41 @@ void Sign::resize(int size)
 	base->resize(size);
 }
 
+int Sign::getType()
+{
+	return 5;
+}
+
+int Sign::getwidth()
+{
+	int x = 0;
+	
+	if (rotationcount % 2 == 0) 
+	{
+		x = top->getWidth();
+	}
+	else
+	{
+		x = top->getWidth() + base->getWidth();
+	}
+
+	return x;
+}
+
+int Sign::getheight()
+{
+	int y = 0;
+	if (rotationcount % 2 == 0)
+	{
+		y = top->getHeight() + base->getHeight();
+	}
+	else
+	{
+		y = top->getHeight();
+	}
+	return y;
+}
+
 void Sign::rotate() {
 
 	double cos90 = 0;
@@ -102,6 +137,41 @@ void iceCream::resize(int size)
 	triang->setRefPoint(tri);
 	triang->resize(size);
 	triang->rotate(), triang->rotate(), triang->rotate(), triang->rotate();
+}
+
+int iceCream::getType()
+{
+	return 6;
+}
+
+int iceCream::getwidth()
+{
+	int x = 0;
+
+	if (rotationcount % 2 == 0)
+	{
+		x = circ->getRad()*2;
+	}
+	else
+	{
+		x = (triang->getSide() * (sqrt(3) / 2)) + circ->getRad()*3;
+	}
+
+	return x;
+}
+
+int iceCream::getheight()
+{
+	int y = 0;
+	if (rotationcount % 2 == 0)
+	{
+		y = (triang->getSide() * (sqrt(3) / 2)) + circ->getRad() * 3;
+	}
+	else
+	{
+		y = circ->getRad() * 2;
+	}
+	return y;
 }
 
 void iceCream::draw() const
@@ -234,6 +304,41 @@ void fanoos::resize(int size)
 
 }
 
+int fanoos::getType()
+{
+	return 7;
+}
+
+int fanoos::getwidth()
+{
+	int x;
+
+	if (rotationcount % 2 == 0)
+	{
+		x = mid->getSide();
+	}
+	else
+	{
+		x = (top->getSide() * (sqrt(3) / 2)) + (mid->getSide() * (sqrt(3) / 2)) + (bottom->getSide() * (sqrt(3) / 2));
+	}
+
+	return x;
+}
+
+int fanoos::getheight()
+{
+	int y = 0;
+	if (rotationcount % 2 == 0)
+	{
+		y = (top->getSide() * (sqrt(3) / 2)) + (mid->getSide() * (sqrt(3) / 2)) + (bottom->getSide() * (sqrt(3) / 2));
+	}
+	else
+	{
+		y = mid->getSide();
+	}
+	return y;
+}
+
 void fanoos::move(float X, float Y)
 {
 	top->move(X, Y);   // Assuming rect is a pointer to Rect
@@ -299,6 +404,41 @@ void House::resize(int size)
 
 	up->rotate(); up->rotate(); up->rotate(); up->rotate();
 	t1->rotate(); t1->rotate(); t1->rotate(); t1->rotate();
+}
+
+int House::getType()
+{
+	return 8;
+}
+
+int House::getwidth()
+{
+	int x = 0;
+
+	if (rotationcount % 2 == 0)
+	{
+		x = down->getWidth();
+	}
+	else
+	{
+		x = down->getWidth() + (t1->getSide() * (sqrt(3) / 2) * (3 / 2));
+	}
+
+	return x;
+}
+
+int House::getheight()
+{
+	int y = 0;
+	if (rotationcount % 2 == 0)
+	{
+		y = down->getHeight() + (t1->getSide() * (sqrt(3) / 2) * (3 / 2));
+	}
+	else
+	{
+		y = down->getHeight();
+	}
+	return y;
 }
 
 void House::rotate()
@@ -401,6 +541,41 @@ void Car::resize(int size)
 
 }
 
+int Car::getType()
+{
+	return 9;
+}
+
+int Car::getwidth()
+{
+	int x = 0;
+
+	if (rotationcount % 2 == 0)
+	{
+		x = rect->getWidth();
+	}
+	else
+	{
+		x = rect->getWidth() + (t1->getSide() * (sqrt(3) / 2)) + (2 * cir1->getRad());
+	}
+
+	return x;
+}
+
+int Car::getheight()
+{
+	int y = 0;
+	if (rotationcount % 2 == 0)
+	{
+		y = rect->getHeight() + (t1->getSide() * (sqrt(3) / 2)) + (2 * cir1->getRad());
+	}
+	else
+	{
+		y = rect->getHeight();
+	}
+	return y;
+}
+
 void Car::draw() const
 {
 	rect->draw();
@@ -409,6 +584,7 @@ void Car::draw() const
 	t1->draw();
 
 }
+
 void Car::move(float X, float Y)
 {
 	rect->move(X, Y);   // Assuming rect is a pointer to Rect
@@ -513,6 +689,42 @@ void Tree::resize(int size)
 	t2->rotate(), t2->rotate(), t2->rotate(), t2->rotate();
 	t1->rotate(), t1->rotate(), t1->rotate(), t1->rotate();
 }
+
+int Tree::getType()
+{
+	return 10;
+}
+
+int Tree::getwidth()
+{
+	int x = 0;
+
+	if (rotationcount % 2 == 0)
+	{
+		x = t1->getSide();
+	}
+	else
+	{
+		x = r1->getWidth() + (c1->getRad() * 2) + (t1->getSide()*(sqrt(3) / 2) * (3/2));
+	}
+
+	return x;
+}
+
+int Tree::getheight()
+{
+	int y = 0;
+	if (rotationcount % 2 == 0)
+	{
+		y = r1->getHeight() + (c1->getRad() * 2) + (t1->getSide() * (sqrt(3) / 2) * (3 / 2));
+	}
+	else
+	{
+		y = t1->getSide();
+	}
+	return y;
+}
+
 
 void Tree::rotate() {
 

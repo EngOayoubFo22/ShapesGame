@@ -29,7 +29,42 @@ grid::~grid()
 		delete shapeList[i];
 }
 
+void grid::match()
+{
+	int x, y, f, z;
+	bool match = false;
 
+	for (int i = 0; i < shapeCount; i++)
+	{
+		x = activeShape->getRefPoint().x;
+		y = activeShape->getRefPoint().y;
+		f = shapeList[i]->getRefPoint().x;
+		z = shapeList[i]->getRefPoint().y;
+		if ( x == f && y == z)
+		{
+			if (activeShape->getType() == shapeList[i]->getType())
+			{
+				if (activeShape->getwidth() == shapeList[i]->getwidth() && activeShape->getheight() == shapeList[i]->getheight())
+				{
+					
+				}
+
+			}
+
+		}
+
+	}
+
+	if (match == true)
+	{
+
+
+	}
+
+	else {     }
+	
+
+}
 
 void grid::clearGridArea() const
 {

@@ -14,6 +14,21 @@ shape::shape(game* r_pGame, point ref)
 	int rotationcount=0;
 	int resizecount=0;
 }
+int shape::getwidth()
+{
+	return 0;
+}
+
+int shape::getheight()
+{
+	return 0;
+}
+
+
+int shape::getType()
+{
+	return 0;
+}
 
 void shape::resize(int size) {
 }

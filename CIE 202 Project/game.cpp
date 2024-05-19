@@ -224,6 +224,10 @@ void game::handleKeyPress(char K) {
 	case 'd'://left 
 		activeShape->move(Step, 0);
 		break;
+	case ' '://check match 
+		;
+		break;
+
 	}
 
 	shapesGrid->draw(); 
