@@ -280,7 +280,7 @@ void game::getchargedSteps()
 void game::handleKeyPress(char K) {
 	if (!shapesGrid) return;
 
-	 int Step = 50; 
+	 int Step = config.gridSpacing; 
 	shape* activeShape = shapesGrid->getActiveShape(); 
 
 	switch (K) {
@@ -308,6 +308,10 @@ void game::handleKeyPress(char K) {
 		step1++;
 		gameToolbar->GameLevelScoreLives(this);
 		break;
+	case ' '://check match 
+		;
+		break;
+
 	}
 
 	shapesGrid->draw(); 
@@ -339,6 +343,7 @@ void game::run()
 
 				if(clickedItem)
 				shapesGrid->draw(); 
+				//gameToolbar->drawtoolbar(this);
 				//shapesGrid->DrawRandomShape();
 			}
 		}

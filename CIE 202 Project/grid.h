@@ -24,6 +24,7 @@ public:
 	
 	grid(point r_uprleft, int r_width, int r_height, game* r_pGame);
 	~grid();
+	virtual void match();
 	void draw() const;
 	void clearGridArea() const;
 	bool addShape(shape* newShape);

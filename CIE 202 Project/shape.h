@@ -36,7 +36,11 @@ protected:
 	int resizecount;
 public:
     shape(game* r_pGame, point ref);
-	
+
+	virtual int getType();
+	virtual int getwidth();
+	virtual int getheight();
+
     virtual void draw() const=0;
 
 	virtual void resize(int size);
@@ -46,7 +50,8 @@ public:
 	//void setRefPoint(point p);
 	
 	virtual void move(float smallX, float smallY);
-	
+	int getRotationCount() const;
+	int getResizeCount() const;
 	void setRefPoint(const point& newPoint);
 	point getRefPoint() ;
 	void save(ofstream& out);
