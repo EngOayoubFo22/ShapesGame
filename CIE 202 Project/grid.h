@@ -38,6 +38,7 @@ public:
 	void drawAllButActiveShape();
 	void drawAllButRandomShape();
 	void moveActiveShape(int dx, int dy);
+	void saveshapes(ofstream& o) const;
 };
  
 

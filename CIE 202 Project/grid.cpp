@@ -234,3 +234,14 @@ void grid::drawAllButRandomShape()
 	int grid::getshapecount() {
 		return shapeCount;
 	}
+
+	void grid::saveshapes(ofstream& o) const
+	{
+		for (int i = 0; i < shapeCount; i++)
+		{
+			if (shapeList[i] != nullptr)
+			{
+				shapeList[i]->save(o);
+			}
+		}
+	}
