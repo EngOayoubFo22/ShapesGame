@@ -217,7 +217,7 @@ int game::getstep1()
 void game::handleKeyPress(char K) {
 	if (!shapesGrid) return;
 
-	 int Step = config.gridSpacing; 
+	 int Step = 50; 
 	shape* activeShape = shapesGrid->getActiveShape(); 
 
 	switch (K) {
