@@ -81,7 +81,8 @@ void toolbar::GameLevelScoreLives(game* pG)
 	toolbarItemImages[ITM_Actual_Level] = to_string(pGame->getCurrentGameLevel());
 	toolbarItemImages[ITM_String_Step] = "Steps = ";
 	toolbarItemImages[ITM_Actual_Step] = to_string(pGame->getstep1());
-
+	toolbarItemImages[ITM_String_RemainStep] = "Remaining Steps = ";
+	toolbarItemImages[ITM_Actual_RemainStep] = to_string(pGame->getRemainingsteps());
 	ClearScoreArea(pG);
 	for (int i = 16; i < ITM_CNT; i++)
 	{
@@ -147,5 +148,31 @@ void toolbar::ClearScoreArea(game* r_pGame)
 	pWind->SetBrush(WHITE);
 	pWind->DrawRectangle(16 * config.toolbarItemWidth - 5, 0, 19 * config.toolbarItemWidth - 5, config.toolBarHeight - 5);
 
+}
+
+void toolbar::drawtoolbar(game* pg)
+{
+	height = config.toolBarHeight;
+	width = config.windWidth;
+	this->pGame = pg;
+	window* pWind = pGame->getWind();
+	pWind->SetPen(WHITE);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0, 0, config.toolbarItemWidth*16, config.toolBarHeight);
+
+	for (int i = 0; i < ITM_CNT; i++)
+	{
+
+		if (i < 16)
+			pWind->DrawImage(toolbarItemImages[i], i * config.toolbarItemWidth, 0, config.toolbarItemWidth, height);
+		//pWind->DrawImage()
+
+	}
+	GameLevelScoreLives(pg);
+
+
+	//Draw a line under the toolbar
+	pWind->SetPen(DARKBLUE, 3);
+	pWind->DrawLine(0, height, width, height);
 }
 

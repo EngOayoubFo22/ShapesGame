@@ -72,35 +72,43 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 	{
 	case ITM_SIGN:
 		op = new operAddSign(this);
-		printMessage("You Clicked on Create A Sign");
+		 {
+			printMessage("You Clicked on Create A Sign");
+		}	
+			
 		break;
-	/*case ITM_Triangle:
-		op = new operAddTriangle(this);
-		printMessage("You Clicked on Create A Triangle");
-		break;
-	case ITM_circle:
-		op = new operAddcircle(this);
-		printMessage("You Clicked on Create A Circle");
-		break;
-	case ITM_Rectangle:
-		op = new operAddRectangle(this);
-		printMessage("You Clicked on Create A Rectangle");
-		break;*/
+	
 	case ITM_Save_and_Load:
-		op = new operSave(this);
-		printMessage("You Cliked on Save And Load");
+		op = new operLoad(this);
+		printMessage("You Cliked on Load");
 		break;
 	case ITM_Select_GAME_LEVEl:
-		printMessage("You Clicked on Select Game level");
+	{
+		printMessage("Please enter the game level:");
+		//string newlevel =getSrting(); // Encapsulate this line in a block
+		//if (!newlevel.empty()) {
+		//	int level1 = std::stoi(newlevel); // Convert input to an integer.
+		//	setlevel(level1); // Change to the requested game level.
+		//	printMessage("Game level selected."+newlevel);
+		//}
+		
+		
+		 }
+		break;
+				
 			break;
 	case ITM_Decrease:
 		op = new operDecResize(this);
-		step1++;
-		printMessage("You Decreased the Size");
+		
+			printMessage("you decreased size");
+		
 		break;
 	case ITM_Delete:
 		op = new operDelete(this);
-		step1++;
+		/*if (stepsRemaining > 0) {
+			
+		}
+		else*/
 		printMessage("You Deleted this Item");
 			break;
 	case ITM_Hint:
@@ -109,19 +117,30 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_Increase:
 		op = new operIncResize(this);
-		step1++;
+		/*if (stepsRemaining > 0) {
+			
+		}
+		else*/
 		printMessage("You Increased this items size");
 		break;
 	case ITM_Rotate:
 	
 		op = new operRotate(this);
-		printMessage("You Rotated this Item");
+		performOperation();
+		/*if (stepsRemaining > 0) {
+			
+		}
+		else*/
+		//printMessage("You Rotated this Item");
+		
 		break;
-	case ITM_Refresh:
-		step1++;
+	case ITM_Refresh:		
 		
 		op = new operRefresh(this);
-		
+		/*if (stepsRemaining>0) {
+			printMessage("You Refreshed The Random shapes");
+		}
+		else*/
 		printMessage("You Refreshed The Random shapes");
 		break;
 	case ITM_Icecream:
@@ -147,8 +166,14 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_FLIP:
 		op = new operFlip(this);
+		/*if (stepsRemaining >0) {
 			printMessage("You clicked on Flip");
+		}
+		else*/
+		printMessage("You clicked on Flip");
 		break;
+	case ITM_EXIT:
+		op = new operSaveExit(this);
 	}
 	
 
@@ -248,6 +273,46 @@ int game::getstep1()
 {
 	return step1;
 }
+bool game::performOperation() {
+	bool x = true;
+	while (x==true) {
+		Chargedsteps =6 - step1;
+		string level = std::to_string(getCurrentGameLevel());
+		if (Chargedsteps ==0) {
+			printMessage(" With 100 chargteps you reached to level :" + level+"   Level");
+			break;
+			return false;
+		}
+		else {
+			return true ;
+		}
+	}
+}
+int game::getbounesscore()
+{
+	int bounesScore = 20 +500 / step1;
+	Current_score += bounesScore;
+
+	return Current_score;
+}
+
+
+int game::getRemainingsteps()
+{
+	
+	if (Chargedsteps < 0) {
+		Chargedsteps = 0;
+	}
+	return 0;
+}
+
+void game::getchargedSteps()
+{
+	if (Chargedsteps == 0) {
+		printMessage("you reached to level" + getCurrentGameLevel()+ getCurrentScore());
+}
+	
+}
 
 
 
@@ -263,6 +328,10 @@ void game::handleKeyPress(char K) {
 	case 'w': //up
 		activeShape->move(0, -Step);
 		step1++;
+
+		if (stepsRemaining <= 0) {
+			printMessage("Not enough steps remaining to perform this operation!");
+		}
 		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 's'://down 
@@ -302,7 +371,7 @@ void game::run()
 
 	char K;
 	do {
-		
+		performOperation();
 		while (pWind->GetKeyPress(K)) { 
 			handleKeyPress(K); 
 		}
@@ -323,6 +392,7 @@ void game::run()
 
 				if(clickedItem)
 				shapesGrid->draw(); 
+				//gameToolbar->drawtoolbar(this);
 				//shapesGrid->DrawRandomShape();
 			}
 		}
@@ -362,6 +432,21 @@ void game::DecrementLevel()
 void game::DecrementScore()
 {
 	Current_score--;
+}
+
+void game::Setlevel(int level)
+{
+	this->Current_gameLevel = level;
+}
+
+void game::SetLives(int Livs)
+{
+	this->Lives = Livs;
+}
+
+void game::SetScore(int Score)
+{
+	this->Current_score = Score;
 }
 
 int game::getCurrentGameLevel() const

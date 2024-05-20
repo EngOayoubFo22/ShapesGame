@@ -51,7 +51,10 @@ public:
 	//void setRefPoint(point p);
 	
 	virtual void move(float smallX, float smallY);
+	int getRotationCount() const;
+	void setResize(int rsz);
 	
+	int getResizeCount() const;
 	void setRefPoint(const point& newPoint);
 	point getRefPoint() ;
 	void save(ofstream& out);

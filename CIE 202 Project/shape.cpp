@@ -11,8 +11,8 @@ shape::shape(game* r_pGame, point ref)
 	pGame = r_pGame;
 	fillColor = config.fillColor;
 	borderColor = config.penColor;
-	int rotationcount=0;
-	int resizecount=0;
+	rotationcount=0;
+     resizecount=0;
 }
 int shape::getwidth()
 {
@@ -44,6 +44,21 @@ void shape::resize(int size) {
 	RefPoint.y += smallY;
 }
 
+ int shape::getRotationCount() const
+ {
+	 return rotationcount % 4;
+ }
+
+ void shape::setResize(int rsz)
+ {
+	 this->resizecount = rsz;
+ }
+
+ int shape::getResizeCount() const
+ {
+	 return resizecount;
+ }
+
 point shape:: getRefPoint()  {
 	return RefPoint;
 }
@@ -54,13 +69,14 @@ void shape:: setRefPoint(const point& newPoint) {
 
 void shape::save(ofstream& o)
 {
-	o << RefPoint.x << " " << RefPoint.y << endl;
-	o << rotationcount << endl;
-	o << resizecount << endl;
-	/*o << fillColor.toInt() << endl;
-	o << borderColor.toInt() << endl;*/
+
+	o << getType() << " " << RefPoint.x << " " << RefPoint.y << " "
+		<< rotationcount << " "
+		<< resizecount << endl;
+
 
 }
+
 
 
 

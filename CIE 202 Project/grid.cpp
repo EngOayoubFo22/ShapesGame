@@ -159,6 +159,7 @@ void grid::deleteShapesList()
 	for (int i = 0; i < shapeCount; i++)
 	{
 		delete shapeList[i];
+		shapeList[i] = nullptr;
 	}
 }
 
@@ -170,6 +171,7 @@ void grid::drawAllButActiveShape()
 		activeShape = nullptr;
 	}
 }
+
 
 void grid::drawAllButRandomShape() 
 {
@@ -214,31 +216,62 @@ void grid::drawAllButRandomShape()
 		window* pw = pGame->getWind();
 		srand(time(0));
 		int ct = 0;
-	// generates random shapes and then generates random size and rotation angle
-		while (ct < pGame->getCurrentGameLevel())
+		// generates random shapes and then generates random size and rotation angle
+		while (ct < 2*( pGame->getCurrentGameLevel()) - 1)
 		{
-			int RndX = -300 + (config.RefX - config.RefX % config.gridSpacing) + rand() % (config.RefX - config.RefX % config.gridSpacing + 200);
-			int RndY = -300 + (config.RefX - config.RefX % config.gridSpacing) + rand() % (config.RefX - config.RefX % config.gridSpacing + 200);
+			int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
+			int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - config.RefX % config.gridSpacing);
 			int RndShape = rand() % (6);
-			int RndSize = 1+ rand() % 5;
+			int RndSize = 1 + rand() % 5;
 			int RndRotationNo = rand() % 4;
 			shape* psh;
 
 			if (RndShape == 0)
-				psh = new Sign(pGame, { 500,300 });
+			{
+				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				point f = { RndX,RndY };
+				psh = new Sign(pGame, f);
+			}
 			else if (RndShape == 1)
-				psh = new Car(pGame, { 600,300 });
+			{
+				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				point f = { RndX,RndY };
+				psh = new Car(pGame, f);
+			}
 			else if (RndShape == 2)
-				 psh = new fanoos(pGame, { 700,300 });
+			{
+				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				point f = { RndX,RndY };
+				psh = new fanoos(pGame, f);
+			}
 			else if (RndShape == 3)
-				psh = new Tree(pGame, { 300,300 });
+			{
+				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				point f = { RndX,RndY };
+				psh = new Tree(pGame, f);
+			}
 			else if (RndShape == 4)
-				 psh = new House(pGame, { 600,300 });
+			{
+				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) %10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				point f = { RndX,RndY };
+				psh = new House(pGame, f);
+			}
 			else if (RndShape == 5)
-				 psh = new iceCream(pGame, { 600,300 });
-	
-			    ct++;
+			{
+				int RndX = rand() % ((config.windWidth / 2));
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				point f = { RndX,RndY };
+				psh = new iceCream(pGame, f);
+			}
+
+			ct++;
 			psh->resize(RndSize);
+			psh->setResize(RndSize);
 			for (int i = 0; i < RndRotationNo; i++)
 			{
 				psh->rotate();
@@ -250,4 +283,50 @@ void grid::drawAllButRandomShape()
 	
 	int grid::getshapecount() {
 		return shapeCount;
+	}
+
+	void grid::DrawRandomShapeLoad(point ref, int rotNum, int reSize, int shpType, int Color)
+	{
+
+		shape* psh;
+		switch (shpType)
+		{
+		case 5:
+			psh = new Sign(pGame, ref);
+			break;
+		case 6:
+			psh = new iceCream(pGame, ref);
+			break;
+		case 7:
+			psh = new fanoos(pGame, ref);
+			break;
+		case 8:
+			psh = new House(pGame, ref);
+			break;
+		case 9 :
+			psh = new Car(pGame, ref);
+			break;
+		case 10:
+			psh = new Tree(pGame, ref);
+		}
+
+		psh->resize(psh->getResizeCount());
+		for (int i = 0; i < rotNum; i++)
+			psh->rotate();
+
+
+		addShape(psh);
+
+	}
+
+
+	void grid::saveshapes(ofstream& o) const
+	{
+		for (int i = 0; i < shapeCount; i++)
+		{
+			if (shapeList[i] != nullptr)
+			{
+				shapeList[i]->save(o);
+			}
+		}
 	}

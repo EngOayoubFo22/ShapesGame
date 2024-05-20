@@ -117,6 +117,14 @@ public:
 	operRefresh(game* r_pGame);
 	virtual void Act();
 };
+
+
+class operSaveExit :public operation {
+public:
+	operSaveExit(game* r_pGame);
+	virtual void Act();
+};
+class operLoad :public operation {
 class operHint :public operation {
 public:
 	operHint(game* r_pGame);
@@ -124,6 +132,6 @@ public:
 };
 class operSave :public operation {
 public:
-	operSave(game* r_pGame);
+	operLoad(game* r_pGame);
 	virtual void Act();
 };

@@ -3,6 +3,9 @@
 #include "CompositeShapes.h"
 #include <fstream>
 #include<iostream>
+#include <vector>
+#include <sstream>
+
 using namespace std;
 /////////////////////////////////// class operation  //////////////////
 operation::operation(game* r_pGame)
@@ -61,6 +64,11 @@ operRefresh::operRefresh(game* r_pGame) : operation(r_pGame)
 operHint::operHint(game* r_pGame) : operation(r_pGame)
 {
 }
+operLoad::operLoad(game* r_pGame) : operation(r_pGame)
+{
+}
+
+
 
 
 
@@ -337,6 +345,8 @@ void operDelete::Act()
 {
 	grid* pGrid = pGame->getGrid();
 	//pGrid->clearGridArea();
+	pGame->getstep1();
+	pGame->getRemainingsteps();
 	pGrid->drawAllButActiveShape();
 	if (pGrid->getActiveShape())
 	{
@@ -368,19 +378,15 @@ void operHint::Act()
 }
 
 
-operSave::operSave(game* r_pGame) : operation(r_pGame) {
+operSaveExit::operSaveExit(game* r_pGame) : operation(r_pGame) {
 
 }
 
-void operSave::Act()
+void operSaveExit::Act()
 {
 	grid* shapesGrid = pGame->getGrid();
 	ofstream GameProgress("SaveLoad//GameProgress.txt");
 	FILE* progress = fopen("SaveLoad//GameProgress.txt", "w");
-	/*if (!GameProgress) {
-		cout << "Error opening file for writing" << endl;
-		return;
-	}*/
 
 	int lives = pGame->getCurrentLives();
 	int score = pGame->getCurrentScore();
@@ -389,17 +395,98 @@ void operSave::Act()
 	GameProgress << lives << " ";
 	GameProgress << score << " ";
 	GameProgress << level << endl;
-	
+
 	shape* sh = shapesGrid->getActiveShape();
 	sh->save(GameProgress);
-	
-	shape* shapes=shapesGrid->getShapesList();
-	for (int i = 0; i < shapesGrid->getshapecount(); i++)
-	{
-		shapes[i].save(GameProgress);
-	}
 
-	
+	shapesGrid->saveshapes(GameProgress);
+
+
 
 	GameProgress.close();
 }
+
+void parseString(vector<string>& v, string s)
+{
+	string word;
+	istringstream iss(s);
+	while (iss >> word)
+	{
+		v.push_back(word);
+	}
+}
+
+void operLoad::Act()
+{
+
+	grid* shapesgrid = pGame->getGrid();
+	ifstream File;
+	File.open("SaveLoad//GameProgress.txt");
+	vector<string> v1;
+	string line;
+	while (getline(File, line))
+	{
+		v1.push_back(line);
+	}
+	vector<string> ScoreLevelLives;
+	parseString(ScoreLevelLives, v1[0]);
+	pGame->Setlevel(stoi(ScoreLevelLives[2]));
+	pGame->SetLives(stoi(ScoreLevelLives[0]));
+	pGame->SetScore(stoi(ScoreLevelLives[1]));
+	vector<string> ActiveShape;
+	parseString(ActiveShape, v1[1]);
+	shape* psh = shapesgrid->getActiveShape();
+	delete psh;
+	psh = nullptr;
+	point ref = { stoi(ActiveShape[1]),stoi(ActiveShape[2]) };
+	switch (stoi(ActiveShape[0]))
+	{
+	case 5:
+		psh = new Sign(pGame, ref);
+		break;
+	case 6:
+		psh = new iceCream(pGame, ref);
+		break;
+	case 7:
+		psh = new fanoos(pGame, ref);
+		break;
+	case 8:
+		psh = new House(pGame, ref);
+		break;
+	case 9:
+		psh = new Car(pGame, ref);
+		break;
+	case 10:
+		psh = new Tree(pGame, ref);
+	}
+
+	
+	if (stoi(ActiveShape[4]) > 0) {
+		for (int i = 0; i < stoi(ActiveShape[4]); i++)
+			psh->resize(4);
+	}
+	else {
+		for (int i = 0; i > stoi(ActiveShape[4]); i--)
+			psh->resize(2);
+	}
+	for (int i = 0; i < stoi(ActiveShape[3]); i++)
+		psh->rotate();
+
+	shapesgrid->setActiveShape(psh);
+	shapesgrid->deleteShapesList();
+	for (int i = 2; i < v1.size() - 2; i++)
+	{
+		vector<string> ShapeList;
+		parseString(ShapeList, v1[i]);
+		point ref1 = { stoi(ShapeList[1]),stoi(ShapeList[2]) };
+		shapesgrid->DrawRandomShapeLoad(ref1, stoi(ShapeList[3]), stoi(ShapeList[4]), stoi(ShapeList[0]));
+	}
+
+	File.close();
+
+
+
+	
+}
+
+

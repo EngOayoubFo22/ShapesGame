@@ -15,10 +15,17 @@ Sign::Sign(game* r_pGame, point ref, float rndwdth,float rndheight ,float rndwdt
 void Sign::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1)
+	{
+		x = 0.25;
+		resizecount--;
+	}
+	if (size == 2) { x = 0.5;
+	resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	point pBupdate;
 
@@ -28,6 +35,7 @@ void Sign::resize(int size)
 	base->setRefPoint(pBupdate);
 	top->resize(size);
 	base->resize(size);
+	
 }
 
 void Sign::setColor(color r)
@@ -89,6 +97,8 @@ void Sign::rotate() {
 	base->rotate();
 	top->rotate();
 
+	rotationcount++;
+
 }
 void Sign::draw() const
 {
@@ -112,6 +122,8 @@ void Sign::flip() {
 
 	base->flip();
 	top->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -132,10 +144,14 @@ iceCream::iceCream(game* r_pGame, point ref,float circl , float circl1 , float f
 void iceCream::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; 
+	resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 	circ->resize(size);
 	circ1->resize(size);
 
@@ -147,6 +163,7 @@ void iceCream::resize(int size)
 	triang->setRefPoint(tri);
 	triang->resize(size);
 	triang->rotate(), triang->rotate(), triang->rotate(), triang->rotate();
+
 }
 
 void iceCream::setColor(color r)
@@ -228,6 +245,7 @@ void iceCream::rotate()
 	circ->draw();
 	circ1->draw();
 	triang->rotate();
+	rotationcount += 2;
 }
 void iceCream::flip() {
 	double cos180 = -1;
@@ -248,6 +266,8 @@ void iceCream::flip() {
 	circ->draw();
 	circ1->draw();
 	triang->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -275,6 +295,8 @@ void fanoos::rotate() {
 	top->rotate();
 	mid->rotate();
 	bottom->rotate();
+
+	rotationcount++;
 }
 fanoos::fanoos(game* r_pGame, point ref,float side1, float side2 , float side3) : shape(r_pGame,ref)
 {
@@ -300,10 +322,13 @@ void fanoos::resize(int size)
 	bottom->resize(size);
 	top->resize(size);
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	point rmid, rbot;
 	rmid = { ((mid->pref().x - top->pref().x) * x + top->pref().x), ((mid->pref().y - top->pref().y) * x + top->pref().y) };
@@ -323,6 +348,8 @@ void fanoos::resize(int size)
 	mid->rotate();
 	bottom->rotate();
 	top->rotate();
+
+
 
 }
 void fanoos::setColor(color r)
@@ -398,6 +425,8 @@ void fanoos::flip() {
 	top->flip();
 	mid->flip();
 	bottom->flip();
+
+	rotationcount += 2;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -418,10 +447,13 @@ House::House(game* r_pGame, point ref, float rectwidth , float rectheight , floa
 void House::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	up->resize(size);
 	down->resize(size);
@@ -437,6 +469,7 @@ void House::resize(int size)
 
 	up->rotate(); up->rotate(); up->rotate(); up->rotate();
 	t1->rotate(); t1->rotate(); t1->rotate(); t1->rotate();
+
 }
 
 int House::getType()
@@ -506,6 +539,8 @@ void House::rotate()
 	up->rotate();
 	down->rotate();
 
+	rotationcount += 2;
+
 }
 void House::draw() const
 {
@@ -538,6 +573,8 @@ void House::flip() {
 	t1->flip();
 	up->flip();
 	down->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -562,10 +599,13 @@ Car::Car(game* r_pGame, point ref, float sidee , float radius , float length , f
 void Car::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	point cira, cirb, trig;
 	cira = { ((cir1->pref().x - rect->pref().x) * x + rect->pref().x), ((cir1->pref().y - rect->pref().y) * x + rect->pref().y) };
@@ -583,6 +623,7 @@ void Car::resize(int size)
 	t1->rotate();
 	t1->rotate();
 	rect->resize(size);
+
 
 }
 
@@ -677,6 +718,8 @@ void Car::rotate()
 	cir1->draw();
 	cir2->draw();
 
+	rotationcount++;
+
 }
 void Car::flip() {
 	int cos180 = -1;
@@ -702,6 +745,8 @@ void Car::flip() {
 	cir1->draw();
 	cir2->draw();
 
+	rotationcount += 2;
+
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -716,10 +761,10 @@ Tree::Tree(game* r_pGame, point ref, float rectWidth, float rectheight, float tr
 	point rect = { ref.x, ref.y + (config.TreeShape.topTriangleSide * (sqrt(3) / 2)) + 0.5 * config.TreeShape.rectangleHeight };
 	point cir = { ref.x,ref.y - (config.TreeShape.topTriangleSide * (sqrt(3) / 2)) - config.TreeShape.circleRad };
 
-	t1 = new Triangle(pGame, trig1, triangle1);
-	t2 = new Triangle(pGame, trig2, trianlge2);
-	r1 = new Rect(pGame, rect, rectWidth, rectheight);
-	c1 = new circle(pGame, cir, circlerad);
+	t1 = new Triangle(pGame, trig1, 100);
+	t2 = new Triangle(pGame, trig2, 100);
+	r1 = new Rect(pGame, rect, 130, 30);
+	c1 = new circle(pGame, cir, config.TreeShape.circleRad);
 
 }
 void Tree::resize(int size)
@@ -730,10 +775,12 @@ void Tree::resize(int size)
 	c1->resize(size);
 	point pt, pr, pc;
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++; }
 
 	pt.x = (t2->pref().x - t1->pref().x) * x + t1->pref().x;
 	pt.y = (t2->pref().y - t1->pref().y) * x + t1->pref().y;
@@ -747,6 +794,7 @@ void Tree::resize(int size)
 	t2->setRefPoint(pt), r1->setRefPoint(pr), c1->setRefPoint(pc);
 	t2->rotate(), t2->rotate(), t2->rotate(), t2->rotate();
 	t1->rotate(), t1->rotate(), t1->rotate(), t1->rotate();
+
 }
 
 int Tree::getType()
@@ -824,6 +872,8 @@ void Tree::rotate() {
 	t1->rotate();
 	t2->rotate();
 	r1->rotate();
+
+	rotationcount++;
 }
 void Tree::draw()const {
 	t1->draw();
@@ -862,5 +912,7 @@ void Tree::flip()
 	t1->flip();
 	t2->flip();
 	r1->flip();
+
+	rotationcount += 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

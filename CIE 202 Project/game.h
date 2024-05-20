@@ -16,7 +16,7 @@ class game
 	
 	window* pWind;	//Pointer to the CMU graphics window
 	grid* shapesGrid;
-	int Current_gameLevel = 2;
+	int Current_gameLevel =3;
 	int Lives = 5;
 	int Current_score = 0;
 	int step1 = 0;
@@ -25,6 +25,9 @@ class game
 	int countdownDuration = 100;
 	int intTime;
 	int timeE;
+	int bounes;
+	int stepsRemaining = 9;
+	int Chargedsteps ;
 public:
 	game();
 	~game();
@@ -44,6 +47,9 @@ public:
 	void DecrementLives();
 	void DecrementLevel();
 	void DecrementScore();
+	void Setlevel(int level);
+	void SetLives(int Livs);
+	void SetScore(int Score);
 	int getCurrentGameLevel() const;
 	int getCurrentLives() const;
 	int getCurrentScore() const;
@@ -53,6 +59,10 @@ public:
 	grid* getGrid() const;		//returns a pointer to the shapes grid
 	toolbar* getToolBar() const;
 	int getstep1();
+	bool performOperation();
+	int getbounesscore();
+	int getRemainingsteps();
+	void getchargedSteps();
 	//creates an operation according to the toolbar item clicked
 	operation* createRequiredOperation(toolbarItem clickedItem);
 	void run();	//start the game
