@@ -133,6 +133,11 @@ void circle::flip() {
 	this->rotate();
 }
 
+void circle::setColor(color r)
+{
+	fillColor = r;
+	borderColor = r;
+}
 
 
 float Triangle::getSide() const
