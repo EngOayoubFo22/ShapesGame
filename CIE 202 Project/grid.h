@@ -34,7 +34,7 @@ public:
 	shape* getShapesList();
 	void deleteShapesList();
 	int getshapecount();
-	
+	void DrawRandomShapeLoad(point ref, int rotNum, int reSize , int shpType, int Color = 1);
 	void drawAllButActiveShape();
 	void drawAllButRandomShape();
 	void moveActiveShape(int dx, int dy);

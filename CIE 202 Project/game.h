@@ -35,7 +35,6 @@ public:
 	void createGrid();		//creates the shapes grid
 	void game::handleKeyPress(char Key);
 	void deleteRandomShapes();
-	void setlevel(int level);
 	void incrementScore();
 	void incrementLevel();
 	void incrementLives();
@@ -43,6 +42,9 @@ public:
 	void DecrementLives();
 	void DecrementLevel();
 	void DecrementScore();
+	void Setlevel(int level);
+	void SetLives(int Livs);
+	void SetScore(int Score);
 	int getCurrentGameLevel() const;
 	int getCurrentLives() const;
 	int getCurrentScore() const;

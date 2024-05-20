@@ -235,6 +235,42 @@ void grid::drawAllButRandomShape()
 		return shapeCount;
 	}
 
+	void grid::DrawRandomShapeLoad(point ref, int rotNum, int reSize, int shpType, int Color)
+	{
+
+		shape* psh;
+		switch (shpType)
+		{
+		case 5:
+			psh = new Sign(pGame, ref);
+			break;
+		case 6:
+			psh = new iceCream(pGame, ref);
+			break;
+		case 7:
+			psh = new fanoos(pGame, ref);
+			break;
+		case 8:
+			psh = new House(pGame, ref);
+			break;
+		case 9 :
+			psh = new Car(pGame, ref);
+			break;
+		case 10:
+			psh = new Tree(pGame, ref);
+		}
+
+		for (int i = 0; i < reSize; i++)
+			psh->resize(4);
+		for (int i = 0; i < rotNum; i++)
+			psh->rotate();
+
+
+		addShape(psh);
+
+	}
+
+
 	void grid::saveshapes(ofstream& o) const
 	{
 		for (int i = 0; i < shapeCount; i++)

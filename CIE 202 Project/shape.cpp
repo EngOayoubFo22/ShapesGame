@@ -59,6 +59,7 @@ void shape:: setRefPoint(const point& newPoint) {
 
 void shape::save(ofstream& o)
 {
+
 	o << getType() << " " << RefPoint.x << " " << RefPoint.y << " "
 		<< rotationcount << " "
 		<< resizecount << endl;

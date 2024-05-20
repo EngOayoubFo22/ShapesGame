@@ -74,8 +74,8 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	
 	case ITM_Save_and_Load:
-		op = new operSave(this);
-		printMessage("You Cliked on Save And Load");
+		op = new operLoad(this);
+		printMessage("You Cliked on Load");
 		break;
 	case ITM_Select_GAME_LEVEl:
 	{
@@ -166,6 +166,8 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		else*/
 		printMessage("You clicked on Flip");
 		break;
+	case ITM_EXIT:
+		op = new operSaveExit(this);
 	}
 	
 
@@ -287,7 +289,7 @@ void game::handleKeyPress(char K) {
 	case 'w': //up
 		activeShape->move(0, -Step);
 		step1++;
-		
+
 		if (stepsRemaining <= 0) {
 			printMessage("Not enough steps remaining to perform this operation!");
 		}
@@ -383,6 +385,21 @@ void game::DecrementLevel()
 void game::DecrementScore()
 {
 	Current_score--;
+}
+
+void game::Setlevel(int level)
+{
+	this->Current_gameLevel = level;
+}
+
+void game::SetLives(int Livs)
+{
+	this->Lives = Livs;
+}
+
+void game::SetScore(int Score)
+{
+	this->Current_score = Score;
 }
 
 int game::getCurrentGameLevel() const
