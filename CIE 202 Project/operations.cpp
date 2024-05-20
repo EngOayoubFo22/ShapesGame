@@ -452,8 +452,15 @@ void operLoad::Act()
 		psh = new Tree(pGame, ref);
 	}
 
-	for (int i = 0; i < stoi(ActiveShape[4]); i++)
-		psh->resize(4);
+	
+	if (stoi(ActiveShape[4]) > 0) {
+		for (int i = 0; i < stoi(ActiveShape[4]); i++)
+			psh->resize(4);
+	}
+	else {
+		for (int i = 0; i > stoi(ActiveShape[4]); i--)
+			psh->resize(2);
+	}
 	for (int i = 0; i < stoi(ActiveShape[3]); i++)
 		psh->rotate();
 

@@ -15,10 +15,17 @@ Sign::Sign(game* r_pGame, point ref, float rndwdth,float rndheight ,float rndwdt
 void Sign::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1)
+	{
+		x = 0.25;
+		resizecount--;
+	}
+	if (size == 2) { x = 0.5;
+	resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	point pBupdate;
 
@@ -28,7 +35,7 @@ void Sign::resize(int size)
 	base->setRefPoint(pBupdate);
 	top->resize(size);
 	base->resize(size);
-
+	
 }
 
 int Sign::getType()
@@ -127,10 +134,14 @@ iceCream::iceCream(game* r_pGame, point ref,float circl , float circl1 , float f
 void iceCream::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; 
+	resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 	circ->resize(size);
 	circ1->resize(size);
 
@@ -289,10 +300,13 @@ void fanoos::resize(int size)
 	bottom->resize(size);
 	top->resize(size);
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	point rmid, rbot;
 	rmid = { ((mid->pref().x - top->pref().x) * x + top->pref().x), ((mid->pref().y - top->pref().y) * x + top->pref().y) };
@@ -400,10 +414,13 @@ House::House(game* r_pGame, point ref, float rectwidth , float rectheight , floa
 void House::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	up->resize(size);
 	down->resize(size);
@@ -537,10 +554,13 @@ Car::Car(game* r_pGame, point ref, float sidee , float radius , float length , f
 void Car::resize(int size)
 {
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++;
+	}
 
 	point cira, cirb, trig;
 	cira = { ((cir1->pref().x - rect->pref().x) * x + rect->pref().x), ((cir1->pref().y - rect->pref().y) * x + rect->pref().y) };
@@ -696,10 +716,12 @@ void Tree::resize(int size)
 	c1->resize(size);
 	point pt, pr, pc;
 	float x = 1;
-	if (size == 1) { x = 0.25; }
-	if (size == 2) { x = 0.5; }
+	if (size == 1) { x = 0.25; resizecount--;
+	}
+	if (size == 2) { x = 0.5; resizecount--;
+	}
 	if (size == 3) { x = 1; }
-	if (size == 4) { x = 2; }
+	if (size == 4) { x = 2; resizecount++; }
 
 	pt.x = (t2->pref().x - t1->pref().x) * x + t1->pref().x;
 	pt.y = (t2->pref().y - t1->pref().y) * x + t1->pref().y;
