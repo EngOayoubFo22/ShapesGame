@@ -124,13 +124,15 @@ public:
 	operSaveExit(game* r_pGame);
 	virtual void Act();
 };
-class operLoad :public operation {
+
 class operHint :public operation {
 public:
 	operHint(game* r_pGame);
 	virtual void Act();
 };
-class operSave :public operation {
+
+class operLoad :public operation {
+
 public:
 	operLoad(game* r_pGame);
 	virtual void Act();
