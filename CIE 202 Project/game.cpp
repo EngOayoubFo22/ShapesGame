@@ -86,8 +86,8 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		//	setlevel(level1); // Change to the requested game level.
 		//	printMessage("Game level selected."+newlevel);
 		//}
-		//
-		//
+		
+		
 		 }
 		break;
 				
@@ -254,17 +254,7 @@ int game::getbounesscore()
 
 	return Current_score;
 }
-//int game::getbounes()
-//{
-//	int minstep = 13 + Current_gameLevel;
-//	//maybe 
-//	if (stepsRemaining>minstep) {
-//
-//		Current_score += 5;
-//
-//	}
-//	return ;
-//}
+
 
 int game::getRemainingsteps()
 {
