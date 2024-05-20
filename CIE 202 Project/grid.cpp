@@ -111,6 +111,7 @@ void grid::deleteShapesList()
 	for (int i = 0; i < shapeCount; i++)
 	{
 		delete shapeList[i];
+		shapeList[i] = nullptr;
 	}
 }
 

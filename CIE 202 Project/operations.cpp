@@ -427,8 +427,9 @@ void operLoad::Act()
 	pGame->SetScore(stoi(ScoreLevelLives[1]));
 	vector<string> ActiveShape;
 	parseString(ActiveShape, v1[1]);
-
-	shape* psh;
+	shape* psh = shapesgrid->getActiveShape();
+	delete psh;
+	psh = nullptr;
 	point ref = { stoi(ActiveShape[1]),stoi(ActiveShape[2]) };
 	switch (stoi(ActiveShape[0]))
 	{
@@ -457,7 +458,7 @@ void operLoad::Act()
 		psh->rotate();
 
 	shapesgrid->setActiveShape(psh);
-
+	shapesgrid->deleteShapesList();
 	for (int i = 2; i < v1.size() - 2; i++)
 	{
 		vector<string> ShapeList;
