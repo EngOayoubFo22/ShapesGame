@@ -44,6 +44,11 @@ void shape::resize(int size) {
 	 return rotationcount % 4;
  }
 
+ void shape::setResize(int rsz)
+ {
+	 this->resizecount = rsz;
+ }
+
  int shape::getResizeCount() const
  {
 	 return resizecount;

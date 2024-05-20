@@ -223,6 +223,7 @@ void grid::drawAllButRandomShape()
 
 			ct++;
 			psh->resize(RndSize);
+			psh->setResize(RndSize);
 			for (int i = 0; i < RndRotationNo; i++)
 			{
 				psh->rotate();
@@ -261,8 +262,7 @@ void grid::drawAllButRandomShape()
 			psh = new Tree(pGame, ref);
 		}
 
-		for (int i = 0; i < reSize; i++)
-			psh->resize(4);
+		psh->resize(psh->getResizeCount());
 		for (int i = 0; i < rotNum; i++)
 			psh->rotate();
 

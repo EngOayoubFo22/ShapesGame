@@ -28,7 +28,7 @@ void Sign::resize(int size)
 	base->setRefPoint(pBupdate);
 	top->resize(size);
 	base->resize(size);
-	resizecount++;
+
 }
 
 int Sign::getType()
@@ -142,7 +142,7 @@ void iceCream::resize(int size)
 	triang->setRefPoint(tri);
 	triang->resize(size);
 	triang->rotate(), triang->rotate(), triang->rotate(), triang->rotate();
-	resizecount++;
+
 }
 
 int iceCream::getType()
@@ -313,7 +313,7 @@ void fanoos::resize(int size)
 	bottom->rotate();
 	top->rotate();
 
-	resizecount++;
+
 
 }
 
@@ -420,7 +420,6 @@ void House::resize(int size)
 	up->rotate(); up->rotate(); up->rotate(); up->rotate();
 	t1->rotate(); t1->rotate(); t1->rotate(); t1->rotate();
 
-	resizecount++;
 }
 
 int House::getType()
@@ -560,7 +559,6 @@ void Car::resize(int size)
 	t1->rotate();
 	rect->resize(size);
 
-	resizecount++;
 
 }
 
@@ -716,7 +714,6 @@ void Tree::resize(int size)
 	t2->rotate(), t2->rotate(), t2->rotate(), t2->rotate();
 	t1->rotate(), t1->rotate(), t1->rotate(), t1->rotate();
 
-	resizecount++;
 }
 
 int Tree::getType()
