@@ -325,7 +325,7 @@ void game::handleKeyPress(char K) {
 	shape* activeShape = shapesGrid->getActiveShape(); 
 
 	switch (K) {
-	case 'w': //up
+	case 8: //up
 		activeShape->move(0, -Step);
 		step1++;
 
@@ -334,17 +334,17 @@ void game::handleKeyPress(char K) {
 		}
 		gameToolbar->GameLevelScoreLives(this);
 		break;
-	case 's'://down 
+	case 2://down 
 		activeShape->move(0,Step);
 		step1++;
 		gameToolbar->GameLevelScoreLives(this);
 		break;
-	case 'a': //right 
+	case 4: //right 
 		activeShape->move(-Step, 0);
 		step1++;
 		gameToolbar->GameLevelScoreLives(this);
 		break;
-	case 'd'://left 
+	case 6://left 
 		activeShape->move(Step, 0);
 		step1++;
 		gameToolbar->GameLevelScoreLives(this);
@@ -392,7 +392,7 @@ void game::run()
 
 				if(clickedItem)
 				shapesGrid->draw(); 
-				//gameToolbar->drawtoolbar(this);
+				gameToolbar->drawtoolbar(this);
 				//shapesGrid->DrawRandomShape();
 			}
 		}
