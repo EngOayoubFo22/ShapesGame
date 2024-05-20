@@ -156,9 +156,9 @@ void toolbar::drawtoolbar(game* pg)
 	width = config.windWidth;
 	this->pGame = pg;
 	window* pWind = pGame->getWind();
-	pWind->SetPen(WHITE);
-	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(0, 0, config.toolbarItemWidth*16, config.toolBarHeight);
+	//pWind->SetPen(WHITE);
+	//pWind->SetBrush(WHITE);
+	//pWind->DrawRectangle(0, 0, config.toolbarItemWidth*16, config.toolBarHeight);
 
 	for (int i = 0; i < ITM_CNT; i++)
 	{
