@@ -38,6 +38,7 @@ public:
     shape(game* r_pGame, point ref);
 
 	virtual int getType();
+	virtual void setColor(color r);
 	virtual int getwidth();
 	virtual int getheight();
 

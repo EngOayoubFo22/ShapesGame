@@ -4,6 +4,8 @@
 #include"shape.h"
 #include <cstdlib>
 #include <time.h>
+#include <iostream>
+#include <cmath>
 
 
 grid::grid(point r_uprleft, int wdth, int hght, game* pG)
@@ -40,29 +42,75 @@ void grid::match()
 		y = activeShape->getRefPoint().y;
 		f = shapeList[i]->getRefPoint().x;
 		z = shapeList[i]->getRefPoint().y;
-		if ( x == f && y == z)
+
+		if (activeShape->getType() == shapeList[i]->getType())
 		{
-			if (activeShape->getType() == shapeList[i]->getType())
+			std::cout << 1;
+
+			if (activeShape->getwidth() == shapeList[i]->getwidth() && activeShape->getheight() == shapeList[i]->getheight())
 			{
+				std::cout << 2;
+
 				if (activeShape->getwidth() == shapeList[i]->getwidth() && activeShape->getheight() == shapeList[i]->getheight())
 				{
-					
+					if ((abs(x - f) <= 300) && (abs(y - z) <= 300))
+					{
+						std::cout << 3;
+
+						delete activeShape;
+						activeShape = nullptr;
+
+						delete shapeList[i];
+						shapeList[i] = nullptr;
+						pGame->setTimer(false);
+						match = true;
+						break;
+					}
 				}
-
 			}
-
 		}
+	}
 
+	if (shapeList == nullptr)
+	{
+		pGame->incrementLevel();
 	}
 
 	if (match == true)
 	{
-
-
+		pGame->incrementScore();
+		pGame->incrementScore();
 	}
-
-	else {     }
+	else 
+	{ 
+		pGame->DecrementScore();
+	}
 	
+
+}
+
+void grid::Hint()
+{
+	
+	
+	
+	if (hint == false)
+	{
+		
+		x = 1 + rand() % shapeCount;
+		shapeList[x]->setColor(BLUE);
+
+		hint = true;
+		pGame->HintWait();
+	}
+	else
+	{
+		shapeList[x]->setColor(RED);
+		hint = false;
+	}
+	
+
+
 
 }
 

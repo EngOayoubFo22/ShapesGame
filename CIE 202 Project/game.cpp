@@ -1,7 +1,7 @@
 #include "game.h"
 #include "gameConfig.h"
-
-
+#include <ctime>
+#include <iostream>
 
 game::game()
 {
@@ -23,6 +23,11 @@ game::~game()
 {
 	delete pWind;
 	delete shapesGrid;
+}
+
+void game::setTimer(bool t)
+{
+	timerActive = t;
 }
 
 
@@ -100,6 +105,7 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 			break;
 	case ITM_Hint:
 		printMessage("You Used A hint");
+		op = new operHint(this);
 		break;
 	case ITM_Increase:
 		op = new operIncResize(this);
@@ -161,6 +167,27 @@ void game::printMessage(string msg) const	//Prints a message on status bar
 	pWind->DrawString(10, config.windHeight - (int)(0.85 * config.statusBarHeight), msg);
 }
 
+void game::countdown()
+{
+
+	if (timerActive == false)
+	{
+		intTime = time(0);
+		timerActive = true;
+		printMessage("Timer Started!");
+	}
+
+	timeE = time(0) - intTime;
+
+	remTime = countdownDuration - timeE;
+	if (remTime == 0)
+	{
+		printMessage("TIME IS UP!");
+		timerActive = false;
+		DecrementLives();
+	}
+	std::cout << remTime;
+}
 
 
 window* game::getWind() const		//returns a pointer to the graphics window
@@ -168,7 +195,19 @@ window* game::getWind() const		//returns a pointer to the graphics window
 	return pWind;
 }
 
-
+void game::HintWait()
+{
+	Sleep(2000);
+	shapesGrid->Hint();
+	
+	/*if (time(0) - x == 2)
+	{
+		shapesGrid->Hint();
+	}
+	else if (shapesGrid->hint == true)
+			
+	*/
+}
 
 string game::getSrting() const
 {
@@ -242,7 +281,8 @@ void game::handleKeyPress(char K) {
 		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case ' '://check match 
-		;
+		printMessage("Checking for match");
+		shapesGrid->match();
 		break;
 
 	}
@@ -250,10 +290,11 @@ void game::handleKeyPress(char K) {
 	shapesGrid->draw(); 
 }
 
-	
+
 void game::run()
 {
 	int x, y;
+	int w = 0;
 	toolbarItem clickedItem = ITM_CNT;
 
 	
@@ -265,14 +306,20 @@ void game::run()
 		while (pWind->GetKeyPress(K)) { 
 			handleKeyPress(K); 
 		}
-
+		
+		if (w == 1)
+		{
+			countdown();
+		}
 		
 		if (pWind->GetMouseClick(x, y)) { 
 			if (y >= 0 && y <30) {
 				clickedItem = gameToolbar->getItemClicked(x);
 				operation* op = createRequiredOperation(clickedItem);
-				if (op) op->Act();
-
+				if (op) {
+					op->Act();
+					w = 1;
+				}
 
 				if(clickedItem)
 				shapesGrid->draw(); 

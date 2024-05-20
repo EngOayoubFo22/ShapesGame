@@ -17,14 +17,18 @@ class grid
 	shape* activeShape;
 
 		//The shape that the user works on to match to the ranom shapes
-
+	
 	int shapeCount;		//current number of shapes in the list
 	game* pGame;
+protected:
+	int	x;
+	bool hint = false;
 public:
 	
 	grid(point r_uprleft, int r_width, int r_height, game* r_pGame);
 	~grid();
 	virtual void match();
+	virtual void Hint();
 	void draw() const;
 	void clearGridArea() const;
 	bool addShape(shape* newShape);

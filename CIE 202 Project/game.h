@@ -20,10 +20,15 @@ class game
 	int Lives = 5;
 	int Current_score = 0;
 	int step1 = 0;
+	int remTime;
+	bool timerActive = false;
+	int countdownDuration = 100;
+	int intTime;
+	int timeE;
 public:
 	game();
 	~game();
-
+	void setTimer(bool t);
 	string getSrting() const;	 //Returns a string entered by the user
 	void createWind(int, int, int, int); //creates the game window
 	void clearStatusBar() const;	//Clears the status bar
@@ -42,7 +47,9 @@ public:
 	int getCurrentGameLevel() const;
 	int getCurrentLives() const;
 	int getCurrentScore() const;
+	void countdown();
 	window* getWind() const;		//returns a pointer to the graphics window
+	void HintWait();
 	grid* getGrid() const;		//returns a pointer to the shapes grid
 	toolbar* getToolBar() const;
 	int getstep1();

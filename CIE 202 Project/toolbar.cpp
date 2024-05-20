@@ -81,6 +81,7 @@ void toolbar::GameLevelScoreLives(game* pG)
 	toolbarItemImages[ITM_Actual_Level] = to_string(pGame->getCurrentGameLevel());
 	toolbarItemImages[ITM_String_Step] = "Steps = ";
 	toolbarItemImages[ITM_Actual_Step] = to_string(pGame->getstep1());
+
 	ClearScoreArea(pG);
 	for (int i = 16; i < ITM_CNT; i++)
 	{

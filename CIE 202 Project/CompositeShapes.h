@@ -12,6 +12,7 @@ public:
 	virtual int getType();
 	virtual int getwidth();
 	virtual int getheight();
+	virtual void setColor(color r);
 	virtual void draw() const;
 	virtual void rotate();
 	void move(float X, float Y) override;
@@ -29,7 +30,8 @@ public:
 	virtual int getType();
 	virtual int getwidth();
 	virtual int getheight();
-	virtual void draw()const;
+	virtual void setColor(color r);
+	virtual void draw() const;
 	virtual void rotate();
 	void move(float X, float Y) override; virtual void flip();
 };
@@ -45,6 +47,7 @@ public :
 	virtual int getType();
 	virtual int getwidth();
 	virtual int getheight();
+	virtual void setColor(color r);
 	virtual void draw() const;
 	virtual void rotate();
 	void move(float X, float Y) override; virtual void flip();
@@ -63,6 +66,7 @@ public:
 	virtual int getType();
 	virtual int getwidth();
 	virtual int getheight();
+	virtual void setColor(color r);
 	virtual void draw() const;
 	virtual void rotate();
 	void move(float X, float Y) override; virtual void flip();
@@ -82,6 +86,7 @@ public:
 	virtual int getType();
 	virtual int getwidth();
 	virtual int getheight();
+	virtual void setColor(color r);
 	virtual void flip();
 	virtual void rotate();
 	virtual void draw() const;
@@ -101,6 +106,7 @@ public:
 	virtual int getType();
 	virtual int getwidth();
 	virtual int getheight();
+	virtual void setColor(color r);
 	virtual void rotate();
 	virtual void draw() const;
 	void move(float X, float Y) override;

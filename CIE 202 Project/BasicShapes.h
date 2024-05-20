@@ -9,13 +9,14 @@ public:
 	void setWidth(float newWidth);
 	float getHeight() const;
 	float getWidth() const;
+	virtual void draw() const;
 	Rect(game* r_pGame, point ref, float r_hght, float r_wdth);
 	void flip();
 	void move(float deltaX, float deltaY) override;
 	virtual void resize(int size);
-	void draw() const override;
 	point pref() const;
 	void rotate();
+	virtual void setColor(color r);
 
 };
 
@@ -32,6 +33,8 @@ public:
 	virtual void rotate();
 	void move(float X, float Y) override;
 	point pref() const; void flip();
+	virtual void setColor(color r);
+	
 };
 
 class Triangle :public shape
@@ -49,6 +52,7 @@ public:
 	void move(float X, float Y) override;
 	void rotate() override;
 	point pref() const; void flip();
+	virtual void setColor(color r);
 
 };
 
@@ -63,10 +67,12 @@ public:
 	void setSide(float newSide);
 	fTriangle(game* r_pGame, point ref, float side);
 	virtual void resize(int size);
+
 	virtual void draw() const;
 	void move(float X, float Y) override;
 	void update_points();
 	void rotate() override;
 	point pref() const; void flip();
+	virtual void setColor(color r);
 
 };

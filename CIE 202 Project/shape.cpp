@@ -30,6 +30,11 @@ int shape::getType()
 	return 0;
 }
 
+void shape::setColor(color r)
+{
+	
+}
+
 void shape::resize(int size) {
 }
 

@@ -30,6 +30,16 @@ void Sign::resize(int size)
 	base->resize(size);
 }
 
+void Sign::setColor(color r)
+{
+	fillColor = r;
+	top->setColor(fillColor);
+	base->setColor(fillColor);
+
+	top->draw();
+	base->draw();
+}
+
 int Sign::getType()
 {
 	return 5;
@@ -137,6 +147,18 @@ void iceCream::resize(int size)
 	triang->setRefPoint(tri);
 	triang->resize(size);
 	triang->rotate(), triang->rotate(), triang->rotate(), triang->rotate();
+}
+
+void iceCream::setColor(color r)
+{
+	fillColor = r;
+	circ->setColor(fillColor);
+	circ1->setColor(fillColor);
+	triang->setColor(fillColor);
+
+	circ->draw();
+	circ1->draw();
+	triang->draw();
 }
 
 int iceCream::getType()
@@ -303,6 +325,17 @@ void fanoos::resize(int size)
 	top->rotate();
 
 }
+void fanoos::setColor(color r)
+{
+	fillColor = r;
+	top->setColor(fillColor);
+	mid->setColor(fillColor);
+	bottom->setColor(fillColor);
+
+	top->draw();
+	mid->draw();
+	bottom->draw();
+}
 
 int fanoos::getType()
 {
@@ -425,6 +458,18 @@ int House::getwidth()
 	}
 
 	return x;
+}
+
+void House::setColor(color r)
+{
+	fillColor = r;
+	up->setColor(fillColor);
+	down->setColor(fillColor);
+	t1->setColor(fillColor);
+
+	up->draw();
+	down->draw();
+	t1->draw();
 }
 
 int House::getheight()
@@ -560,6 +605,20 @@ int Car::getwidth()
 	}
 
 	return x;
+}
+
+void Car::setColor(color r)
+{
+	fillColor = r;
+	rect->setColor(fillColor);
+	cir1->setColor(fillColor);
+	cir2->setColor(fillColor);
+	t1->setColor(fillColor);
+
+	rect->draw();
+	cir1->draw();
+	cir2->draw();
+	t1->draw();
 }
 
 int Car::getheight()
@@ -709,6 +768,20 @@ int Tree::getwidth()
 	}
 
 	return x;
+}
+
+void Tree::setColor(color r)
+{
+	fillColor = r;
+	t1->setColor(fillColor);
+	t2->setColor(fillColor);
+	c1->setColor(fillColor);
+	r1->setColor(fillColor);
+
+	t1->draw();
+	t2->draw();
+	c1->draw();
+	t1->draw();
 }
 
 int Tree::getheight()

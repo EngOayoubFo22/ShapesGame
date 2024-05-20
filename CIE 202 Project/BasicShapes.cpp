@@ -29,6 +29,11 @@ float Rect::getWidth() const
 {
 	return wdth;
 }
+void Rect::setColor(color r)
+{
+	fillColor = r;
+	borderColor = r;
+}
 void Rect::flip(){
 	this->rotate(); this->rotate();
 }
@@ -62,8 +67,8 @@ void Rect::resize(int size)
 void Rect::draw() const
 {
 	window* pW = pGame->getWind();	//get interface window
-	pW->SetPen(config.penColor, config.penWidth);
-	pW->SetBrush(config.fillColor);
+	pW->SetPen(fillColor, config.penWidth);
+	pW->SetBrush(fillColor);
 	point upperLeft, lowerBottom;
 	upperLeft.x = RefPoint.x - wdth / 2;
 	upperLeft.y = RefPoint.y - hght / 2;
@@ -116,7 +121,7 @@ void circle::resize(int size)
 void circle::draw() const
 {
 	window* pW = pGame->getWind();	//get interface window
-	pW->SetPen(borderColor, config.penWidth);
+	pW->SetPen(fillColor, config.penWidth);
 	pW->SetBrush(fillColor);
 	pW->DrawCircle(RefPoint.x, RefPoint.y, rad, FILLED);
 
@@ -138,7 +143,6 @@ void circle::setColor(color r)
 	fillColor = r;
 	borderColor = r;
 }
-
 
 float Triangle::getSide() const
 {
@@ -185,7 +189,7 @@ void Triangle::resize(int size)
 void Triangle::draw() const
 {
 	window* pW = pGame->getWind();
-	pW->SetPen(borderColor, config.penWidth);
+	pW->SetPen(fillColor, config.penWidth);
 	pW->DrawTriangle(f.x, f.y, s.x, s.y, t.x, t.y, FILLED);
 }
 void Triangle::move(float X, float Y)
@@ -209,6 +213,11 @@ void Triangle::move(float X, float Y)
 			rotate();
 		}
 	}
+}
+void Triangle::setColor(color r)
+{
+	fillColor = r;
+	borderColor = r;
 }
 void Triangle::rotate()
 {
@@ -295,7 +304,11 @@ void fTriangle::resize(int size)
 	if (size == 4) { x = 2; }
 	sideee = x * sideee;
 }
-
+void fTriangle::setColor(color r)
+{
+	fillColor = r;
+	borderColor = r;
+}
 void fTriangle::move(float X, float Y)
 {
 	this->RefPoint.x += X;
@@ -321,7 +334,7 @@ void fTriangle::move(float X, float Y)
 void fTriangle::draw() const
 {
 	window* pW = pGame->getWind();
-	pW->SetPen(borderColor, config.penWidth);
+	pW->SetPen(fillColor, config.penWidth);
 	pW->DrawTriangle(f.x, f.y, s.x, s.y, t.x, t.y, FILLED);
 
 }

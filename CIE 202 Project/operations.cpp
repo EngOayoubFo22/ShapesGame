@@ -58,7 +58,9 @@ operDelete::operDelete(game* r_pGame) : operation(r_pGame)
 operRefresh::operRefresh(game* r_pGame) : operation(r_pGame)
 {
 }
-
+operHint::operHint(game* r_pGame) : operation(r_pGame)
+{
+}
 
 
 
@@ -359,6 +361,11 @@ void operRefresh::Act()
 
 }
 
+void operHint::Act()
+{
+	grid* pGrid = pGame->getGrid();
+	pGrid->Hint();
+}
 
 
 operSave::operSave(game* r_pGame) : operation(r_pGame) {
