@@ -16,10 +16,13 @@ class game
 	
 	window* pWind;	//Pointer to the CMU graphics window
 	grid* shapesGrid;
-	int Current_gameLevel = 2;
+	int Current_gameLevel =3;
 	int Lives = 5;
 	int Current_score = 0;
 	int step1 = 0;
+	int bounes;
+	int stepsRemaining = 9;
+	int Chargedsteps ;
 public:
 	game();
 	~game();
@@ -32,6 +35,7 @@ public:
 	void createGrid();		//creates the shapes grid
 	void game::handleKeyPress(char Key);
 	void deleteRandomShapes();
+	void setlevel(int level);
 	void incrementScore();
 	void incrementLevel();
 	void incrementLives();
@@ -46,6 +50,10 @@ public:
 	grid* getGrid() const;		//returns a pointer to the shapes grid
 	toolbar* getToolBar() const;
 	int getstep1();
+	bool performOperation();
+	int getbounesscore();
+	int getRemainingsteps();
+	void getchargedSteps();
 	//creates an operation according to the toolbar item clicked
 	operation* createRequiredOperation(toolbarItem clickedItem);
 	void run();	//start the game

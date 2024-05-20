@@ -335,6 +335,8 @@ void operDelete::Act()
 {
 	grid* pGrid = pGame->getGrid();
 	//pGrid->clearGridArea();
+	pGame->getstep1();
+	pGame->getRemainingsteps();
 	pGrid->drawAllButActiveShape();
 	if (pGrid->getActiveShape())
 	{
@@ -370,10 +372,6 @@ void operSave::Act()
 	grid* shapesGrid = pGame->getGrid();
 	ofstream GameProgress("SaveLoad//GameProgress.txt");
 	FILE* progress = fopen("SaveLoad//GameProgress.txt", "w");
-	/*if (!GameProgress) {
-		cout << "Error opening file for writing" << endl;
-		return;
-	}*/
 
 	int lives = pGame->getCurrentLives();
 	int score = pGame->getCurrentScore();
@@ -382,17 +380,14 @@ void operSave::Act()
 	GameProgress << lives << " ";
 	GameProgress << score << " ";
 	GameProgress << level << endl;
-	
+
 	shape* sh = shapesGrid->getActiveShape();
 	sh->save(GameProgress);
-	
-	shape* shapes=shapesGrid->getShapesList();
-	for (int i = 0; i < shapesGrid->getshapecount(); i++)
-	{
-		shapes[i].save(GameProgress);
-	}
 
-	
+	shapesGrid->saveshapes(GameProgress);
+
+
 
 	GameProgress.close();
 }
+
