@@ -94,51 +94,48 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 			break;
 	case ITM_Decrease:
 		op = new operDecResize(this);
-		if (stepsRemaining < 0) {
-
-			printMessage("Not enough steps remaining to perform this operation!");
-		}
-		else
+		
 			printMessage("you decreased size");
 		
 		break;
 	case ITM_Delete:
 		op = new operDelete(this);
-		if (stepsRemaining > 0) {
-			printMessage("You Deleted this Item");
+		/*if (stepsRemaining > 0) {
+			
 		}
-		else
-		printMessage("Not enough steps remaining to perform this operation!");
+		else*/
+		printMessage("You Deleted this Item");
 			break;
 	case ITM_Hint:
 		printMessage("You Used A hint");
 		break;
 	case ITM_Increase:
 		op = new operIncResize(this);
-		if (stepsRemaining > 0) {
-			printMessage("You Increased this items size");
+		/*if (stepsRemaining > 0) {
+			
 		}
-		else
-		printMessage("Not enough steps remaining to perform this operation!");
+		else*/
+		printMessage("You Increased this items size");
 		break;
 	case ITM_Rotate:
 	
 		op = new operRotate(this);
-		if (stepsRemaining > 0) {
-			printMessage("You Rotated this Item");
+		performOperation();
+		/*if (stepsRemaining > 0) {
+			
 		}
-		else
-			printMessage("Not enough steps remaining to perform this operation!");
+		else*/
+		//printMessage("You Rotated this Item");
 		
 		break;
 	case ITM_Refresh:		
 		
 		op = new operRefresh(this);
-		if (stepsRemaining>0) {
+		/*if (stepsRemaining>0) {
 			printMessage("You Refreshed The Random shapes");
 		}
-		else
-		printMessage("Not enough steps remaining to perform this operation!");
+		else*/
+		printMessage("You Refreshed The Random shapes");
 		break;
 	case ITM_Icecream:
 		printMessage("You clicked on Draw Ice Cream");
@@ -163,11 +160,11 @@ operation* game::createRequiredOperation(toolbarItem clickedItem)
 		break;
 	case ITM_FLIP:
 		op = new operFlip(this);
-		if (stepsRemaining >=0) {
+		/*if (stepsRemaining >0) {
 			printMessage("You clicked on Flip");
 		}
-		else
-			printMessage("Not enough steps remaining to perform this operation!");
+		else*/
+		printMessage("You clicked on Flip");
 		break;
 	}
 	
@@ -236,17 +233,26 @@ int game::getstep1()
 	return step1;
 }
 bool game::performOperation() {
-	// This method would ideally be called when an operation like move or rotate is invoked
-	 // Each operation costs 1 step, adjust as necessary
-	if (stepsRemaining >= 1) {
-		stepsRemaining -= 1;
-		// Perform the operation logic here
-		return true;
+	bool x = true;
+	while (x==true) {
+		Chargedsteps =6 - step1;
+		string level = std::to_string(getCurrentGameLevel());
+		if (Chargedsteps ==0) {
+			printMessage(" With 100 chargteps you reached to level :" + level+"   Level");
+			break;
+			return false;
+		}
+		else {
+			return true ;
+		}
 	}
-	else {
-		printMessage("Not enough steps remaining to perform this operation!");
-		return false;
-	}
+}
+int game::getbounesscore()
+{
+	int bounesScore = 20 +500 / step1;
+	Current_score += bounesScore;
+
+	return Current_score;
 }
 //int game::getbounes()
 //{
@@ -262,11 +268,19 @@ bool game::performOperation() {
 
 int game::getRemainingsteps()
 {
-	stepsRemaining--;
-	if (stepsRemaining < 0) {
-		stepsRemaining = 0;
+	
+	if (Chargedsteps < 0) {
+		Chargedsteps = 0;
 	}
 	return 0;
+}
+
+void game::getchargedSteps()
+{
+	if (Chargedsteps == 0) {
+		printMessage("you reached to level" + getCurrentGameLevel()+ getCurrentScore());
+}
+	
 }
 
 
@@ -283,6 +297,10 @@ void game::handleKeyPress(char K) {
 	case 'w': //up
 		activeShape->move(0, -Step);
 		step1++;
+		
+		if (stepsRemaining <= 0) {
+			printMessage("Not enough steps remaining to perform this operation!");
+		}
 		gameToolbar->GameLevelScoreLives(this);
 		break;
 	case 's'://down 
@@ -316,7 +334,7 @@ void game::run()
 
 	char K;
 	do {
-		
+		performOperation();
 		while (pWind->GetKeyPress(K)) { 
 			handleKeyPress(K); 
 		}
