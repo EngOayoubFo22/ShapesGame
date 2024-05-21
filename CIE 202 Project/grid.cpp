@@ -186,19 +186,19 @@ void grid::drawAllButRandomShape()
 
 bool grid::chechBoundary(shape* psh)
 {
-	if (psh->getRefPoint().x - (psh->getwidth() * 0.75) < 0)
+	if (psh->getRefPoint().x - (psh->getwidth() * 0.5) < 0)
 	{
 		return false;
 	}
-	if (psh->getRefPoint().x + (psh->getwidth() * 0.75) > (config.windWidth*2/3))
+	if (psh->getRefPoint().x + (psh->getwidth() * 0.5) > (config.windWidth*2/3))
 	{
 		return false;
 	}
-	if (psh->getRefPoint().y - (psh->getheight() * 0.75) - config.toolBarHeight < 0)
+	if (psh->getRefPoint().y - (psh->getheight() * 0.5) - config.toolBarHeight < 0)
 	{
 		return false;
 	}
-	if (psh->getRefPoint().y + (psh->getheight() * 0.75) > config.windHeight)
+	if (psh->getRefPoint().y + (psh->getheight() * 0.5) > config.windHeight)
 	{
 		return false;
 	}
@@ -234,13 +234,15 @@ bool grid::chechBoundary(shape* psh)
 	}
 	shape* grid::DrawRandomShape()
 	{
+		
 		window* pw = pGame->getWind();
 		srand(time(0));
 		int ct = 0;
 		// generates random shapes and then generates random size and rotation angle
-		while (ct < 2*( pGame->getCurrentGameLevel()) - 1)
+		while (ct < 2 * (pGame->getCurrentGameLevel()) - 1)
 		{
-			int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
+			
+			int RndX = rand() % ((config.windWidth / 2));
 			int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - config.RefX % config.gridSpacing);
 			int RndShape = rand() % (6);
 			int RndSize = 1 + rand() % 5;
@@ -251,46 +253,56 @@ bool grid::chechBoundary(shape* psh)
 			{
 				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
 				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				RndX -= RndX % 100;
+				RndY -= RndY % 100;
 				point f = { RndX,RndY };
 				psh = new Sign(pGame, f);
 			}
 			else if (RndShape == 1)
 			{
 				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
-				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight));
+				RndX -= RndX % 100;
+				RndY -= RndY % 100;
 				point f = { RndX,RndY };
 				psh = new Car(pGame, f);
 			}
 			else if (RndShape == 2)
 			{
 				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
-				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight));
+				RndX -= RndX % 100;
+				RndY -= RndY % 100;
 				point f = { RndX,RndY };
 				psh = new fanoos(pGame, f);
 			}
 			else if (RndShape == 3)
 			{
 				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
-				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight));
+				RndX -= RndX % 100;
+				RndY -= RndY % 100;
 				point f = { RndX,RndY };
 				psh = new Tree(pGame, f);
 			}
 			else if (RndShape == 4)
 			{
-				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) %10);
-				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				int RndX = rand() % ((config.windWidth / 2) - (config.windWidth / 2) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight));
+				RndX -= RndX % 100;
+				RndY -= RndY % 100;
 				point f = { RndX,RndY };
 				psh = new House(pGame, f);
 			}
 			else if (RndShape == 5)
 			{
 				int RndX = rand() % ((config.windWidth / 2));
-				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight) - (config.windHeight - config.toolBarHeight) % 10);
+				int RndY = config.toolBarHeight + rand() % ((config.windHeight - config.toolBarHeight));
+				RndX -= RndX % 100;
+				RndY -= RndY % 100;
 				point f = { RndX,RndY };
 				psh = new iceCream(pGame, f);
 			}
-
-			ct++;
 			psh->resize(RndSize);
 			//psh->setResize(RndSize);
 			for (int i = 0; i < RndRotationNo; i++)
@@ -301,10 +313,12 @@ bool grid::chechBoundary(shape* psh)
 			if (chechBoundary(psh))
 			{
 				addShape(psh);
+				ct++;
 			}
-			
+
 		}
 		return nullptr;
+	
 	}
 	
 	int grid::getshapecount() {
