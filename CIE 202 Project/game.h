@@ -22,6 +22,7 @@ class game
 	grid* shapesGrid;
 	int Current_gameLevel= 3;
 	int Lives = 5;
+	bool updateToolbarFlag;
 	int Current_score = 0;
 	int step1 = 0;
 	int remTime = 0;

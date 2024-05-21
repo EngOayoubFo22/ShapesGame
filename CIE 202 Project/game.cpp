@@ -199,6 +199,7 @@ void game::countdown()
 	{
 		intTime = time(0);
 		timerActive = true;
+		updateToolbarFlag = false;
 	}
 
 	timeE = time(0) - intTime;
@@ -210,9 +211,12 @@ void game::countdown()
 		timerActive = false;
 		DecrementLives();
 	}
-	if (remTime % 5 == 0)
-	{
+	if (remTime % 5 == 0 && !updateToolbarFlag) {
 		gameToolbar->GameLevelScoreLives(this);
+		updateToolbarFlag = true; // Set the flag to true after calling the function
+	}
+	else if (remTime % 5 != 0) {
+		updateToolbarFlag = false; // Reset the flag when remTime is not a multiple of 5
 	}
 
 }
