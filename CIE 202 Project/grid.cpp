@@ -45,17 +45,18 @@ void grid::match()
 
 		if (activeShape->getType() == shapeList[i]->getType())
 		{
-			std::cout << 1;
+			//std::cout << 1;
 
 			if (activeShape->getwidth() == shapeList[i]->getwidth() && activeShape->getheight() == shapeList[i]->getheight())
 			{
-				std::cout << 2;
+				//std::cout << 2;
 
-				if (activeShape->getwidth() == shapeList[i]->getwidth() && activeShape->getheight() == shapeList[i]->getheight())
+				if (activeShape->getRotationCount() == shapeList[i]->getRotationCount())
 				{
-					if ((abs(x - f) <= 300) && (abs(y - z) <= 300))
+					//std::cout << 3;
+					if ((abs(x - f) <= 400) && (abs(y - z) <= 400))
 					{
-						std::cout << 3;
+						//std::cout << 4;
 
 						delete activeShape;
 						activeShape = nullptr;

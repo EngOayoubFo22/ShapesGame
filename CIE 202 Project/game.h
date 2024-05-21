@@ -20,7 +20,7 @@ class game
 	
 	window* pWind;	//Pointer to the CMU graphics window
 	grid* shapesGrid;
-	int Current_gameLevel= 3;
+	int Current_gameLevel= 1;
 	int Lives = 5;
 	bool updateToolbarFlag;
 	int Current_score = 0;
