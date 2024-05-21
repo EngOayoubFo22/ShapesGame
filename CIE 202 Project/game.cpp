@@ -431,6 +431,7 @@ void game::DecrementLives()
 void game::DecrementLevel()
 {
 	Current_gameLevel--;
+	gameToolbar->GameLevelScoreLives(this);
 }
 
 void game::DecrementScore()
