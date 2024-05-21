@@ -184,6 +184,27 @@ void grid::drawAllButRandomShape()
 
 }
 
+bool grid::chechBoundary(shape* psh)
+{
+	if (psh->getRefPoint().x - (psh->getwidth() * 0.75) < 0)
+	{
+		return false;
+	}
+	if (psh->getRefPoint().x + (psh->getwidth() * 0.75) > (config.windWidth*2/3))
+	{
+		return false;
+	}
+	if (psh->getRefPoint().y - (psh->getheight() * 0.75) - config.toolBarHeight < 0)
+	{
+		return false;
+	}
+	if (psh->getRefPoint().y + (psh->getheight() * 0.75) > config.windHeight)
+	{
+		return false;
+	}
+	return true;
+}
+
 	
 	void grid::draw() const {
 		clearGridArea(); // Clear the grid area first
@@ -271,12 +292,17 @@ void grid::drawAllButRandomShape()
 
 			ct++;
 			psh->resize(RndSize);
-			psh->setResize(RndSize);
+			//psh->setResize(RndSize);
 			for (int i = 0; i < RndRotationNo; i++)
 			{
 				psh->rotate();
 			}
-			addShape(psh);
+
+			if (chechBoundary(psh))
+			{
+				addShape(psh);
+			}
+			
 		}
 		return nullptr;
 	}
@@ -310,7 +336,21 @@ void grid::drawAllButRandomShape()
 			psh = new Tree(pGame, ref);
 		}
 
-		psh->resize(psh->getResizeCount());
+		if (psh->getResizeCount() < 0)
+		{
+			for (int i = 0; i < abs(psh->getResizeCount()); i++)
+			{
+				psh->resize(2);
+			}
+		}
+		else if (psh->getResizeCount() > 0)
+		{
+			for (int i = 0; i < psh->getResizeCount(); i++)
+			{
+				psh->resize(4);
+			}
+		}
+		psh->resize(2);
 		for (int i = 0; i < rotNum; i++)
 			psh->rotate();
 

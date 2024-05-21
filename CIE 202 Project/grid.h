@@ -43,6 +43,7 @@ public:
 	void drawAllButRandomShape();
 	void moveActiveShape(int dx, int dy);
 	void saveshapes(ofstream& o) const;
+	bool chechBoundary(shape* psh);
 };
  
 

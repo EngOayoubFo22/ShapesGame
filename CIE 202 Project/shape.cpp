@@ -54,6 +54,16 @@ void shape::resize(int size) {
 	 this->resizecount = rsz;
  }
 
+ void shape::incrementResizeCount()
+ {
+	 resizecount++;
+ }
+
+ void shape::DecrementCount()
+ {
+	 resizecount--;
+ }
+
  int shape::getResizeCount() const
  {
 	 return resizecount;
