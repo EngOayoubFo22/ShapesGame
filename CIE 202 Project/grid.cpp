@@ -92,13 +92,11 @@ void grid::match()
 void grid::Hint()
 {
 	
-	
-	
 	if (hint == false)
 	{
-		
 		x = 1 + rand() % shapeCount;
 		shapeList[x]->setColor(BLUE);
+		
 
 		hint = true;
 		pGame->HintWait();
@@ -107,6 +105,7 @@ void grid::Hint()
 	{
 		shapeList[x]->setColor(RED);
 		hint = false;
+		
 	}
 	
 

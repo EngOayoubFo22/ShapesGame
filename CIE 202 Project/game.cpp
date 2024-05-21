@@ -228,19 +228,23 @@ window* game::getWind() const		//returns a pointer to the graphics window
 }
 
 void game::HintWait() {
-    if (!hintActive) {
-        // Start the hint wait timer
-        hintStartTime = time(0);
-		hintActive = true;
-    }
+    
+	Sleep(2000);
+	shapesGrid->Hint();
+	
+	//if (!hintActive) {
+ //       // Start the hint wait timer
+ //       hintStartTime = time(0);
+	//	hintActive = true;
+ //   }
 
-    // Check if the wait duration has passed
+ //   // Check if the wait duration has passed
 
-    if ((time(0)- hintStartTime) >= 2) {
-        // Perform the action after the wait duration
-        shapesGrid->Hint();
-        hintActive = false; // Reset the hint active flag
-    }
+ //   if ((time(0)- hintStartTime) >= 2) {
+ //       // Perform the action after the wait duration
+ //       shapesGrid->Hint();
+ //       hintActive = false; // Reset the hint active flag
+ //   }
 }
 
 string game::getSrting() const
