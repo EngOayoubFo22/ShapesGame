@@ -15,7 +15,7 @@ struct
 		int triangleSide = 30;
 	}IceCream;
 	
-	int	windWidth=1350, windHeight=600,	//Window width and height
+	int	windWidth=1490, windHeight=600,	//Window width and height
 		wx=5, wy=5,			//Window starting coordinates
 
 		//The window is divded into 3 areas: toolbar, Working area, and statusbar
@@ -123,6 +123,8 @@ enum toolbarItem //The items of the  toolbar (you should add more items)
 	ITM_Actual_Step,
 	ITM_String_RemainStep,
 	ITM_Actual_RemainStep,
+	ITM_String_RunTime,
+	ITM_Actual_RunTime,
 
 	//TODO: Add more items names here
 	ITM_CNT		//no. of toolbar items ==> This should be the last line in this enum

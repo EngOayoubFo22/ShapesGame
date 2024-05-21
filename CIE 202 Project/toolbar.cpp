@@ -83,6 +83,8 @@ void toolbar::GameLevelScoreLives(game* pG)
 	toolbarItemImages[ITM_Actual_Step] = to_string(pGame->getstep1());
 	toolbarItemImages[ITM_String_RemainStep] = "Remaining Steps = ";
 	toolbarItemImages[ITM_Actual_RemainStep] = to_string(pGame->getRemainingsteps());
+	toolbarItemImages[ITM_String_RunTime] = "Remaining Time : ";
+	toolbarItemImages[ITM_Actual_RunTime] = to_string(pGame->getRem());
 	ClearScoreArea(pG);
 	for (int i = 16; i < ITM_CNT; i++)
 	{
@@ -136,6 +138,31 @@ void toolbar::GameLevelScoreLives(game* pG)
 				 pWind->SetFont(20, BOLD, BY_NAME);
 				 pWind->DrawString((i - 7) * config.toolbarItemWidth + 150, 0, toolbarItemImages[i]);
 			 }
+			else if (i == 24)
+			 {
+				 pWind->SetPen(BLACK, 20);
+				 pWind->SetFont(20, BOLD, BY_NAME);
+				 pWind->DrawString((i - 8) * config.toolbarItemWidth + 85, 18, toolbarItemImages[i]);
+			 }
+			else if (i == 25)
+			 {
+				 pWind->SetPen(BLACK, 20);
+				 pWind->SetFont(20, BOLD, BY_NAME);
+				 pWind->DrawString((i - 9) * config.toolbarItemWidth + 240, 18, toolbarItemImages[i]);
+			 }
+			else if (i == 26)
+			 {
+				 pWind->SetPen(BLACK, 20);
+				 pWind->SetFont(20, BOLD, BY_NAME);
+				 pWind->DrawString((i - 10) * config.toolbarItemWidth + 85 , 35, toolbarItemImages[i]);
+			 }
+			else if (i == 27)
+			 {
+				 pWind->SetPen(BLACK, 20);
+				 pWind->SetFont(20, BOLD, BY_NAME);
+				 pWind->DrawString((i - 11) * config.toolbarItemWidth + 225, 35, toolbarItemImages[i]);
+			 }
+
 	}
 	
 }
@@ -146,7 +173,7 @@ void toolbar::ClearScoreArea(game* r_pGame)
 	window* pWind = pGame->getWind();
 	pWind->SetPen(WHITE);
 	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(16 * config.toolbarItemWidth - 5, 0, 19 * config.toolbarItemWidth - 5, config.toolBarHeight - 5);
+	pWind->DrawRectangle(16 * config.toolbarItemWidth - 5, 0, 21 * config.toolbarItemWidth - 5, config.toolBarHeight - 5);
 
 }
 
