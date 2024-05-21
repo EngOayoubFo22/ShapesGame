@@ -3,13 +3,16 @@
 #include "toolbar.h"
 #include "operations.h"
 #include "grid.h"
-
+#include "ctime"
 
 
 
 //Main class that coordinates the game operation
 class game
 {
+	bool hintActive = false;
+	std::time_t hintStartTime = 0;
+	int hintWaitDuration = 2;
 
 	/// Add more members if needed
 
