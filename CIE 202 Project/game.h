@@ -17,13 +17,13 @@ class game
 	
 	window* pWind;	//Pointer to the CMU graphics window
 	grid* shapesGrid;
-	int Current_gameLevel =3;
+	int Current_gameLevel= 3;
 	int Lives = 5;
 	int Current_score = 0;
 	int step1 = 0;
 	int remTime;
 	bool timerActive = false;
-	int countdownDuration = 100;
+	int countdownDuration = 10;
 	int intTime;
 	int timeE;
 	int bounes;
@@ -43,6 +43,7 @@ public:
 	void deleteRandomShapes();
 	void incrementScore();
 	void incrementLevel();
+	int getRem();
 	void incrementLives();
 	void incrementStep1();
 	void DecrementLives();
