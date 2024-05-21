@@ -3,13 +3,16 @@
 #include "toolbar.h"
 #include "operations.h"
 #include "grid.h"
-
+#include "ctime"
 
 
 
 //Main class that coordinates the game operation
 class game
 {
+	bool hintActive = false;
+	std::time_t hintStartTime = 0;
+	int hintWaitDuration = 2;
 
 	/// Add more members if needed
 
@@ -19,6 +22,7 @@ class game
 	grid* shapesGrid;
 	int Current_gameLevel= 3;
 	int Lives = 5;
+	bool updateToolbarFlag;
 	int Current_score = 0;
 	int step1 = 0;
 	int remTime = 0;

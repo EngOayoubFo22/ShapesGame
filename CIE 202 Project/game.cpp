@@ -199,6 +199,7 @@ void game::countdown()
 	{
 		intTime = time(0);
 		timerActive = true;
+		updateToolbarFlag = false;
 	}
 
 	timeE = time(0) - intTime;
@@ -210,7 +211,14 @@ void game::countdown()
 		timerActive = false;
 		DecrementLives();
 	}
-	std::cout << remTime;
+	if (remTime % 5 == 0 && !updateToolbarFlag) {
+		gameToolbar->GameLevelScoreLives(this);
+		updateToolbarFlag = true; // Set the flag to true after calling the function
+	}
+	else if (remTime % 5 != 0) {
+		updateToolbarFlag = false; // Reset the flag when remTime is not a multiple of 5
+	}
+
 }
 
 
@@ -219,18 +227,20 @@ window* game::getWind() const		//returns a pointer to the graphics window
 	return pWind;
 }
 
-void game::HintWait()
-{
-	Sleep(2000);
-	shapesGrid->Hint();
-	
-	/*if (time(0) - x == 2)
-	{
-		shapesGrid->Hint();
-	}
-	else if (shapesGrid->hint == true)
-			
-	*/
+void game::HintWait() {
+    if (!hintActive) {
+        // Start the hint wait timer
+        hintStartTime = time(0);
+		hintActive = true;
+    }
+
+    // Check if the wait duration has passed
+
+    if ((time(0)- hintStartTime) >= 2) {
+        // Perform the action after the wait duration
+        shapesGrid->Hint();
+        hintActive = false; // Reset the hint active flag
+    }
 }
 
 string game::getSrting() const
@@ -373,7 +383,11 @@ void game::run()
 		while (pWind->GetKeyPress(K)) { 
 			handleKeyPress(K); 
 		}
-		
+		if (hintActive == true)
+		{
+			HintWait();
+		}
+
 		if (w == 1)
 		{
 			countdown();
