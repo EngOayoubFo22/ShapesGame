@@ -21,11 +21,11 @@ class game
 	int Lives = 5;
 	int Current_score = 0;
 	int step1 = 0;
-	int remTime;
+	int remTime = 0;
 	bool timerActive = false;
-	int countdownDuration = 10;
-	int intTime;
-	int timeE;
+	int countdownDuration = 100;
+	int intTime = 0;
+	int timeE = 0;
 	int bounes;
 	int stepsRemaining = 9;
 	int Chargedsteps ;
