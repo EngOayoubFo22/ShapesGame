@@ -199,7 +199,6 @@ void game::countdown()
 	{
 		intTime = time(0);
 		timerActive = true;
-		printMessage("Timer Started!");
 	}
 
 	timeE = time(0) - intTime;
@@ -207,7 +206,7 @@ void game::countdown()
 	remTime = countdownDuration - timeE;
 	if (remTime == 0)
 	{
-		printMessage("TIME IS UP!");
+		printMessage("TIME IS UP YOU LOST A LIVE, a new timer has started!");
 		timerActive = false;
 		DecrementLives();
 	}
@@ -407,6 +406,11 @@ void game::incrementScore()
 void game::incrementLevel()
 {
 	Current_score++;
+}
+
+int game::getRem()
+{
+	return remTime;
 }
 
 void game::incrementLives()
