@@ -304,12 +304,11 @@ int game::getRemainingsteps()
 	}
 	return 0;
 }
-
 void game::getchargedSteps()
 {
 	if (Chargedsteps == 0) {
 		printMessage("you reached to level" + getCurrentGameLevel()+ getCurrentScore());
-}
+     }
 	
 }
 

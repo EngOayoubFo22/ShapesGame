@@ -27,8 +27,8 @@ class game
 	int intTime = 0;
 	int timeE = 0;
 	int bounes;
-	int stepsRemaining = 9;
-	int Chargedsteps ;
+	int stepsRemaining = 190;
+	int Chargedsteps;
 public:
 	game();
 	~game();
@@ -64,7 +64,7 @@ public:
 	bool performOperation();
 	int getbounesscore();
 	int getRemainingsteps();
-	void getchargedSteps();
+    void getchargedSteps();
 	//creates an operation according to the toolbar item clicked
 	operation* createRequiredOperation(toolbarItem clickedItem);
 	void run();	//start the game

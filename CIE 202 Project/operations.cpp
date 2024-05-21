@@ -86,6 +86,7 @@ void operDecResize::Act()
 		toolbar* tolbar = pGame->getToolBar();
 		tolbar->GameLevelScoreLives(this->pGame);
 	}
+	psh->DecrementCount();
 	
 }
 
@@ -102,6 +103,7 @@ void operIncResize::Act()
 		toolbar* tolbar = pGame->getToolBar();
 		tolbar->GameLevelScoreLives(this->pGame);
 	}
+	psh->incrementResizeCount();
 
 }
 
